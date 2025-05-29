@@ -2,9 +2,7 @@
 <!--                Portada del Informe             -->
 <!-- ============================================= -->
 
-<p align="center">
-  <img src="docs/logo-uai2.png"  width="180" />
-</p>
+  ![Logo](docs/logo-uai2.png)
 
 ---
 
