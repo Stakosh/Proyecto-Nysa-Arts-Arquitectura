@@ -4,8 +4,6 @@
 
 <p align="center">
   <img src="images/logo_uai.png" alt="Logo UAI" width="180" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="images/logo_fic.png" alt="Logo Facultad Ingeniería y Ciencias" width="180" />
 </p>
 
 ---
@@ -28,10 +26,6 @@
 ---
 
 **Fecha de entrega:** Jueves 5 de junio de 2025  
-
----
-
-<p align="center"><em>Proyecto semestral para la asignatura de Arquitectura de Sistemas, Universidad Adolfo Ibáñez</em></p>
 
 <!-- ============================================= -->
 
