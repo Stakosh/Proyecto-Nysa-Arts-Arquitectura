@@ -3,7 +3,7 @@
 <!-- ============================================= -->
 
 <p align="center">
-  <img src="images/logo_uai.png" alt="Logo UAI" width="180" />
+  <img src="docs/logo_uai.png" alt="Logo UAI" width="180" />
 </p>
 
 ---
@@ -51,7 +51,7 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 - **Base de datos**: Hoja de cálculo en Excel.  
 - **Comunicación**: WhatsApp, Instagram y llamadas telefónicas.  
 
-![Diagrama de Componentes As-Is](figura_1.png){#fig:componentes}
+![Diagrama de Componentes As-Is](docs/figura_1.png){#fig:componentes}
 
 *Figura 1. Diagrama de Componentes As-Is*
 
@@ -62,7 +62,7 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 3. Si hay disponibilidad, registra la reserva en la planilla.  
 4. Confirma la reserva al cliente por el mismo canal.
 
-![Diagrama de Actividad As-Is](figura_2.png){#fig:flujo}
+![Diagrama de Actividad As-Is](docs/figura_2.png){#fig:flujo}
 
 *Figura 2. Diagrama de Actividad (flujo de datos)*
 
