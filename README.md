@@ -1,15 +1,40 @@
-# Proyecto-Nysa-Arts-Arquitectura
-proyecto semestral para asignatura Arquitectura de Sistemas utilizando Nysa Arts para su desarrollo
+<!-- ============================================= -->
+<!--                Portada del Informe             -->
+<!-- ============================================= -->
 
+<p align="center">
+  <img src="images/logo_uai.png" alt="Logo UAI" width="180" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="images/logo_fic.png" alt="Logo Facultad Ingeniería y Ciencias" width="180" />
+</p>
 
 ---
-title: "Proyecto Arquitectura de Sistemas"
-author: "Equipo Nysa Arts"
-date: "`r Sys.Date()`"
-output: 
-  github_document:
-    toc: true
-    toc_depth: 2
+
+# **Informe 1**
+
+---
+
+**Asignatura:** ARQUITECTURA DE SISTEMAS Sec. 2  
+**Docente:** Eliana Jackeline Vivas Rafael  
+
+---
+
+## Integrantes
+- Nevile Olguin  
+- Mateo Moreira  
+- Javiera Soto  
+- Ian Schmidt  
+
+---
+
+**Fecha de entrega:** Jueves 5 de junio de 2025  
+
+---
+
+<p align="center"><em>Proyecto semestral para la asignatura de Arquitectura de Sistemas, Universidad Adolfo Ibáñez</em></p>
+
+<!-- ============================================= -->
+
 ---
 
 # Descripción del proyecto y contexto
@@ -32,7 +57,7 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 - **Base de datos**: Hoja de cálculo en Excel.  
 - **Comunicación**: WhatsApp, Instagram y llamadas telefónicas.  
 
-![Diagrama de Componentes As-Is](foto_1.png){#fig:componentes}
+![Diagrama de Componentes As-Is](figura_1.png){#fig:componentes}
 
 *Figura 1. Diagrama de Componentes As-Is*
 
@@ -43,7 +68,7 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 3. Si hay disponibilidad, registra la reserva en la planilla.  
 4. Confirma la reserva al cliente por el mismo canal.
 
-![Diagrama de Actividad As-Is](foto_2.png){#fig:flujo}
+![Diagrama de Actividad As-Is](figura_2.png){#fig:flujo}
 
 *Figura 2. Diagrama de Actividad (flujo de datos)*
 
