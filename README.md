@@ -3,7 +3,7 @@
 <!-- ============================================= -->
 
 <p align="center">
-  <img src="docs/logo-uai.png" alt="Logo UAI" width="180" />
+  <img src="docs/logo-uai.png"  width="180" />
 </p>
 
 ---
