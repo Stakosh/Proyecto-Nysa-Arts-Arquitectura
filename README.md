@@ -145,18 +145,19 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 
 # Requerimientos del Sistema
 
-## Funcionales
-
-1. **Reservas de Salas**  
-   - Verificar disponibilidad en tiempo real.  
-   - Enviar confirmación por correo.  
-   - Registrar reserva en base de datos.  
-2. **Inventario**  
-   - Validar equipamiento antes de confirmar.  
-   - Actualizar estado de equipos.  
-3. **Análisis de datos**  
-   - Guardar histórico de reservas.  
-   - Generar reportes de uso y tendencias.
+| Categoría                  | Requerimiento Funcional         | Explicación                                                                 |
+|---------------------------|----------------------------------|------------------------------------------------------------------------------|
+| Reservas de Salas         | Verificación de disponibilidad   | El sistema consulta disponibilidad de sala y equipos según bloques de tiempo. |
+| Reservas de Salas         | Disponibilidad continua          | El sistema está disponible al público todo el tiempo para realizar reservas. |
+| Reservas de Salas         | Mail de confirmación             | Se envía un mail para confirmar la identidad y la reserva.                  |
+| Reservas de Salas         | Registro de reserva              | Se registran en la base de datos los detalles de sala, horario y equipamiento. |
+| Reservas de Salas         | Notificación al centro           | Se envía automáticamente al centro la información de la reserva realizada.  |
+| Inventario                | Validación de disponibilidad     | Se valida que el equipo solicitado esté disponible en la sala antes de confirmar. |
+| Inventario                | Actualización de inventario      | El sistema actualiza el estado de los equipos según reservas confirmadas/liberadas. |
+| Inventario                | Gestión de inventario            | El sistema permite registrar, actualizar y eliminar equipos por sala.        |
+| Recopilación y análisis   | Registro histórico de reservas   | Se almacenan todas las reservas para análisis posterior.                    |
+| Recopilación y análisis   | Análisis de patrones             | Se detectan tendencias de uso de salas y equipos a partir de los datos.     |
+| Recopilación y análisis   | Generación de reportes           | El sistema genera reportes automáticos sobre uso, frecuencia y cancelaciones. |
 
 ## No funcionales
 
