@@ -145,6 +145,8 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 
 # Requerimientos del Sistema
 
+## Funcionales
+
 | Categoría                  | Requerimiento Funcional         | Explicación                                                                 |
 |---------------------------|----------------------------------|------------------------------------------------------------------------------|
 | Reservas de Salas         | Verificación de disponibilidad   | El sistema consulta disponibilidad de sala y equipos según bloques de tiempo. |
@@ -161,12 +163,14 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 
 ## No funcionales
 
-- **Disponibilidad**: 24/7.  
-- **Rendimiento**: Respuesta < 1 s bajo carga normal.  
-- **Seguridad**: TLS 1.2+, roles y validación de acceso.  
-- **Escalabilidad**: Autoescalado al superar 70 % de CPU.  
-- **Usabilidad**: Interfaz intuitiva y móvil.  
-- **Mantenibilidad**: Código modular y tests automatizados.
+| Categoría       | Requerimiento No Funcional | Explicación                                                                 |
+|-----------------|----------------------------|------------------------------------------------------------------------------|
+| Disponibilidad  | 24/7                        | El sistema debe estar disponible para los usuarios en todo momento.         |
+| Rendimiento     | Respuesta rápida            | El sistema debe responder en menos de 1 segundo bajo carga normal.          |
+| Seguridad       | Cifrado y control de acceso | Debe usar TLS 1.2 o superior, con roles definidos y validación de acceso.   |
+| Escalabilidad   | Autoescalado                | El sistema debe escalar automáticamente al superar el 70 % de uso de CPU.   |
+| Usabilidad      | Interfaz amigable           | Debe contar con una interfaz intuitiva y optimizada para dispositivos móviles. |
+| Mantenibilidad  | Código modular               | El sistema debe estar desarrollado con arquitectura modular y pruebas automatizadas. |
 
 # Aplicación de ATAM (básico)
 
