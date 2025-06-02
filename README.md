@@ -71,15 +71,53 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 - **Latencia**: Demoras de minutos u horas en reflejar cambios.  
 - **Sin monitoreo o control de concurrencia**: No hay bloqueo ni alertas automáticas.
 
-# Análisis de Arquitectura Empresarial
+3. Análisis de Arquitectura Empresarial
+Stakeholder principal:
+Nysa Arts, empresa que arrienda salas de ensayo musical y producción en Santiago.
 
-- **Stakeholder principal**: Nysa Arts.  
-- **Usuario principal**: Clientes que reservan espacios.  
-- **Objetivos estratégicos**:
-  - Mejorar eficiencia operativa.  
-  - Reducir errores y tiempos de espera.  
-  - Aumentar fidelización y ocupación.
+Usuario principal:
+Clientes que desean arrendar espacios para ensayos, grabaciones u otros fines relacionados.
 
+Objetivos estratégicos del sistema:
+
+Mejorar la eficiencia operativa en el arriendo de salas.
+
+Reducir errores y tiempos de espera en el proceso de arriendo.
+
+Mejorar la experiencia del cliente y fomentar la fidelización.
+
+Aumentar el porcentaje de ocupación de las salas disponibles.
+
+Proceso clave:
+Desarrollar un sistema que permita a los clientes arrendar salas de forma cómoda, rápida y eficiente.
+
+Componentes de la arquitectura empresarial:
+
+Procesos clave:
+
+Reserva de salas y verificación de disponibilidad.
+
+Gestión de usuarios e inventario de espacios.
+
+Aplicaciones:
+
+Aplicación web desarrollada con Node.js y React.
+
+Gestión de datos en tiempo real para administrar todas las funcionalidades del negocio.
+
+Datos:
+
+Bases de datos con información actualizada sobre usuarios, horarios y disponibilidad de salas.
+
+Infraestructura cloud administrada por proveedores externos.
+
+Contribución del sistema a los objetivos estratégicos:
+
+Objetivo Estratégico	Contribución del Sistema
+Mejorar la eficiencia operativa	Automatización de procesos y reducción de tareas manuales.
+Reducir errores y tiempos de espera	Sistema siempre disponible, con flujos optimizados para facilitar la reserva.
+Mejorar experiencia y fidelización de los clientes	Interfaz intuitiva, transparente y fácil de usar para todo tipo de usuario.
+Aumentar el % de ocupación	Monitoreo de salas disponibles para optimizar la oferta y maximizar el uso del espacio.
 # Requerimientos del Sistema
 
 ## Funcionales
