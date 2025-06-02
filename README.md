@@ -75,76 +75,72 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 
 ### Stakeholder y Usuario Principal
 
-- **Stakeholder principal:** Nysa Arts, empresa dedicada al arriendo de salas de ensayo y producción musical en Santiago.
-- **Usuario principal:** Clientes que buscan arrendar espacios para ensayos, grabaciones u otras actividades musicales.
+- **Stakeholder principal:** Nysa Arts — empresa que arrienda salas de ensayo musical y producción en Santiago de Chile.
+- **Usuario principal:** Clientes (músicos, productores, educadores) que arriendan espacios para fines creativos.
 
 ---
 
 ### Objetivos Estratégicos y Contribución del Sistema
 
-| Objetivo Estratégico                                | Contribución del Sistema                                                                 |
-|-----------------------------------------------------|-------------------------------------------------------------------------------------------|
-| Mejorar la eficiencia operativa                     | Automatiza el proceso de reservas y disponibilidad, reduciendo la carga operativa manual.|
-| Reducir errores y tiempos de espera                 | Minimiza intervenciones humanas y mantiene el sistema activo 24/7 para reservas instantáneas. |
-| Mejorar la experiencia y fidelización de clientes   | Plataforma amigable, transparente y fácil de usar.                                       |
-| Aumentar el porcentaje de ocupación de salas        | Información en tiempo real que permite identificar y ofrecer salas desocupadas.          |
+| Objetivo Estratégico                                 | Contribución del Sistema                                                                 |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Mejorar la eficiencia operativa                      | Disminuye procesos manuales e introduce automatización en reservas y gestión de salas.    |
+| Reducir errores y tiempos de espera                  | Sistema disponible 24/7 con confirmaciones automáticas y validación en tiempo real.       |
+| Mejorar la experiencia y fidelización de los clientes| Plataforma intuitiva y autogestionable con interfaz clara y transparente.                 |
+| Aumentar el porcentaje de ocupación                  | Información en tiempo real para ofrecer automáticamente salas disponibles.                |
 
 ---
 
-### Diagrama Motivacional (Resumen Conceptual)
+### Proceso Clave del Negocio
 
-- **Actores:** Clientes, equipo administrativo de Nysa Arts.
-- **Objetivos:** Reservar de forma fácil, operar eficientemente, reducir tiempos de respuesta.
-- **Drivers:** Necesidad de mejorar procesos internos, brindar mejor experiencia al cliente y escalar el negocio.
-
-> *Este diagrama se puede complementar gráficamente usando herramientas como draw.io o Lucidchart.*
+- Desarrollo de un sistema que permita a los clientes arrendar salas de forma cómoda, autónoma y eficiente.
+- Gestión del flujo completo: desde la disponibilidad hasta la confirmación.
 
 ---
 
-### Arquitectura Empresarial - Modelo de 7 Capas
+### Componentes Clave
+
+#### Procesos
+
+- Reserva de salas y validación de disponibilidad.
+- Gestión de usuarios y equipamiento.
+
+#### Aplicaciones
+
+- Aplicación desarrollada en Node.js y React, con manejo de datos en tiempo real.
+- Comunicación a través de APIs RESTful.
+
+#### Datos
+
+- Base de datos estructurada con usuarios, salas, horarios y reservas.
+- Datos actualizados en tiempo real, soportados por servicios cloud.
+
+#### Infraestructura
+
+- Hosting en la nube administrado por terceros (Heroku, Firebase, etc.).
+- Escalable y con bajo costo de operación.
+
+---
+
+### Modelo de Arquitectura en 7 Capas
 
 | Capa                    | Descripción                                                                                  |
 |-------------------------|----------------------------------------------------------------------------------------------|
-| **1. Presentación**     | Aplicación web responsive desarrollada en React, accesible desde dispositivos móviles y desktop. |
-| **2. Aplicación**       | Backend en Node.js que gestiona lógica de negocio (reservas, validaciones, flujos de usuario). |
-| **3. Servicios**        | API RESTful para interacción entre frontend y backend, y futuras integraciones externas.       |
-| **4. Datos**            | Base de datos con usuarios, horarios, disponibilidad y registros históricos.                   |
-| **5. Integración**      | Soporte para conectar con pasarelas de pago, Google Calendar, redes sociales (futuro).         |
-| **6. Infraestructura**  | Hosting en servicios cloud (Vercel, Firebase, Heroku), con backups y disponibilidad continua.   |
-| **7. Seguridad**        | Control de acceso, autenticación JWT, validaciones en formularios, encriptación de datos.      |
+| **1. Presentación**     | Aplicación web responsive en React, accesible desde dispositivos móviles y escritorio.       |
+| **2. Aplicación**       | Backend en Node.js con lógica de negocio: validación, reservas, notificaciones.              |
+| **3. Servicios**        | API RESTful para la interacción entre clientes, frontend y base de datos.                    |
+| **4. Datos**            | Base de datos relacional con persistencia de usuarios, reservas e inventario.                |
+| **5. Integración**      | Espacio para futuras conexiones con pasarelas de pago, Google Calendar o redes sociales.     |
+| **6. Infraestructura**  | Servicios cloud con despliegue continuo, backups automáticos y escalabilidad.                |
+| **7. Seguridad**        | Autenticación por JWT, HTTPS con TLS 1.2+, control de roles, validaciones y logs de acceso.  |
 
 ---
 
-### Componentes Clave de la Arquitectura
+### Diagrama Motivacional (resumen conceptual)
 
-####  Procesos Clave
-- Reservas de salas.
-- Cancelaciones/modificaciones.
-- Verificación de disponibilidad.
-- Gestión de usuarios.
-
-####  Aplicaciones
-- Frontend en **React**.
-- Backend en **Node.js + Express**.
-- APIs para flujos funcionales en tiempo real.
-
-####  Datos
-- Información sobre clientes, reservas, horarios y ocupación.
-- Logs de actividad para análisis posterior.
-
-#### ☁ Infraestructura
-- Hosting y escalabilidad cloud.
-- Backups automáticos y soporte básico de monitoreo.
-
----
-
-### Entrevista Anónima (Resumen)
-
-> "Lo más importante para nosotros es que el sistema funcione sin tener que responder correos o planillas. Que el cliente vea lo que está libre, reserve y listo. Nos quita tiempo tener que responder todo a mano."
-
-— *Administrador de Nysa Arts* (Entrevista anónima, resumen)
-
----
+- **Actores:** Clientes, equipo administrativo de Nysa Arts.
+- **Objetivos:** Agilizar la reserva, reducir errores, mejorar la experiencia de uso.
+- **Drivers:** Alta demanda, procesos manuales ineficientes, necesidad de escalabilidad.
 
 
 # Requerimientos del Sistema
