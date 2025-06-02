@@ -71,53 +71,82 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 - **Latencia**: Demoras de minutos u horas en reflejar cambios.  
 - **Sin monitoreo o control de concurrencia**: No hay bloqueo ni alertas automáticas.
 
-3. Análisis de Arquitectura Empresarial
-Stakeholder principal:
-Nysa Arts, empresa que arrienda salas de ensayo musical y producción en Santiago.
+## 3. Análisis de Arquitectura Empresarial
 
-Usuario principal:
-Clientes que desean arrendar espacios para ensayos, grabaciones u otros fines relacionados.
+### Stakeholder y Usuario Principal
 
-Objetivos estratégicos del sistema:
+- **Stakeholder principal:** Nysa Arts, empresa dedicada al arriendo de salas de ensayo y producción musical en Santiago.
+- **Usuario principal:** Clientes que buscan arrendar espacios para ensayos, grabaciones u otras actividades musicales.
 
-Mejorar la eficiencia operativa en el arriendo de salas.
+---
 
-Reducir errores y tiempos de espera en el proceso de arriendo.
+### Objetivos Estratégicos y Contribución del Sistema
 
-Mejorar la experiencia del cliente y fomentar la fidelización.
+| Objetivo Estratégico                                | Contribución del Sistema                                                                 |
+|-----------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Mejorar la eficiencia operativa                     | Automatiza el proceso de reservas y disponibilidad, reduciendo la carga operativa manual.|
+| Reducir errores y tiempos de espera                 | Minimiza intervenciones humanas y mantiene el sistema activo 24/7 para reservas instantáneas. |
+| Mejorar la experiencia y fidelización de clientes   | Plataforma amigable, transparente y fácil de usar.                                       |
+| Aumentar el porcentaje de ocupación de salas        | Información en tiempo real que permite identificar y ofrecer salas desocupadas.          |
 
-Aumentar el porcentaje de ocupación de las salas disponibles.
+---
 
-Proceso clave:
-Desarrollar un sistema que permita a los clientes arrendar salas de forma cómoda, rápida y eficiente.
+### Diagrama Motivacional (Resumen Conceptual)
 
-Componentes de la arquitectura empresarial:
+- **Actores:** Clientes, equipo administrativo de Nysa Arts.
+- **Objetivos:** Reservar de forma fácil, operar eficientemente, reducir tiempos de respuesta.
+- **Drivers:** Necesidad de mejorar procesos internos, brindar mejor experiencia al cliente y escalar el negocio.
 
-Procesos clave:
+> *Este diagrama se puede complementar gráficamente usando herramientas como draw.io o Lucidchart.*
 
-Reserva de salas y verificación de disponibilidad.
+---
 
-Gestión de usuarios e inventario de espacios.
+### Arquitectura Empresarial - Modelo de 7 Capas
 
-Aplicaciones:
+| Capa                    | Descripción                                                                                  |
+|-------------------------|----------------------------------------------------------------------------------------------|
+| **1. Presentación**     | Aplicación web responsive desarrollada en React, accesible desde dispositivos móviles y desktop. |
+| **2. Aplicación**       | Backend en Node.js que gestiona lógica de negocio (reservas, validaciones, flujos de usuario). |
+| **3. Servicios**        | API RESTful para interacción entre frontend y backend, y futuras integraciones externas.       |
+| **4. Datos**            | Base de datos con usuarios, horarios, disponibilidad y registros históricos.                   |
+| **5. Integración**      | Soporte para conectar con pasarelas de pago, Google Calendar, redes sociales (futuro).         |
+| **6. Infraestructura**  | Hosting en servicios cloud (Vercel, Firebase, Heroku), con backups y disponibilidad continua.   |
+| **7. Seguridad**        | Control de acceso, autenticación JWT, validaciones en formularios, encriptación de datos.      |
 
-Aplicación web desarrollada con Node.js y React.
+---
 
-Gestión de datos en tiempo real para administrar todas las funcionalidades del negocio.
+### Componentes Clave de la Arquitectura
 
-Datos:
+####  Procesos Clave
+- Reservas de salas.
+- Cancelaciones/modificaciones.
+- Verificación de disponibilidad.
+- Gestión de usuarios.
 
-Bases de datos con información actualizada sobre usuarios, horarios y disponibilidad de salas.
+####  Aplicaciones
+- Frontend en **React**.
+- Backend en **Node.js + Express**.
+- APIs para flujos funcionales en tiempo real.
 
-Infraestructura cloud administrada por proveedores externos.
+####  Datos
+- Información sobre clientes, reservas, horarios y ocupación.
+- Logs de actividad para análisis posterior.
 
-Contribución del sistema a los objetivos estratégicos:
+#### ☁ Infraestructura
+- Hosting y escalabilidad cloud.
+- Backups automáticos y soporte básico de monitoreo.
 
-Objetivo Estratégico	Contribución del Sistema
-Mejorar la eficiencia operativa	Automatización de procesos y reducción de tareas manuales.
-Reducir errores y tiempos de espera	Sistema siempre disponible, con flujos optimizados para facilitar la reserva.
-Mejorar experiencia y fidelización de los clientes	Interfaz intuitiva, transparente y fácil de usar para todo tipo de usuario.
-Aumentar el % de ocupación	Monitoreo de salas disponibles para optimizar la oferta y maximizar el uso del espacio.
+---
+
+### Entrevista Anónima (Resumen)
+
+> "Lo más importante para nosotros es que el sistema funcione sin tener que responder correos o planillas. Que el cliente vea lo que está libre, reserve y listo. Nos quita tiempo tener que responder todo a mano."
+
+— *Administrador de Nysa Arts* (Entrevista anónima, resumen)
+
+---
+
+
 # Requerimientos del Sistema
 
 ## Funcionales
