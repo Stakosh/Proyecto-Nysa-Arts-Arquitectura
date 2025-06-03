@@ -204,3 +204,72 @@ En un mercado musical cada vez más competitivo y con demanda variable, **Nysa A
 - Nevile8. (s.f.). *final*. GitHub. Recuperado el 5 de junio de 2025, de https://github.com/Nevile8/final  
 - Nysa Arts. (s.f.). *Nysa Arts Demo*. Recuperado el 5 de junio de 2025, de https://nyssaa.netlify.app/
 
+## 5. Perfil Operacional
+
+### 5.1 Escenarios de Uso (Proceso Clave: Reserva de Salas)
+
+| Escenario clave               | Descripción                                                                 |
+|------------------------------|-----------------------------------------------------------------------------|
+| Consulta de disponibilidad   | Visualización en tiempo real de salas e instrumentos según bloque horario. |
+| Reserva y modificación       | Solicitud, edición o cancelación de reservas por parte del cliente.        |
+| Gestión de inventario        | Asignación y control de equipos disponibles por sala.                      |
+| Notificaciones automáticas   | Confirmaciones y recordatorios automáticos de reservas.                   |
+| Análisis y predicción de uso | Registro histórico y análisis de demanda futura.                           |
+
+---
+
+### 5.2 Usuarios
+
+| Usuario                  | Rol                                                                 |
+|--------------------------|----------------------------------------------------------------------|
+| Clientes                 | Músicos o bandas que reservan salas para ensayo o producción.       |
+| Personal administrativo  | Gestionan reservas, validan inventario y atención al cliente.       |
+| Dueños / Gestión         | Analizan datos para toma de decisiones estratégicas.                |
+
+---
+
+### 5.3 Restricciones
+
+- **Técnicas**: Tecnologías open-source (Node.js, React, PostgreSQL), bajo costo.
+- **Económicas**: Sin subscripciones mensuales ni servidores caros.
+- **Temporales**: Tiempo limitado (4–6 meses de desarrollo).
+- **Operativas**: Alta demanda en horario pico, necesidad de disponibilidad continua.
+
+---
+
+### 5.4 Atributos de Calidad Prioritarios
+
+| Atributo         | Prioridad | Justificación                                                                                   |
+|------------------|-----------|--------------------------------------------------------------------------------------------------|
+| Rendimiento      | Alta      | Respuesta rápida evita que los usuarios abandonen el proceso de reserva.                        |
+| Disponibilidad   | Alta      | Debe estar operativo 24/7, especialmente durante horas pico.                                     |
+| Seguridad        | Media-Alta| Se manejan datos personales; se requiere control de acceso y protección de información.         |
+| Escalabilidad    | Media     | Aumento progresivo de usuarios y reservas requiere infraestructura adaptable.                   |
+| Mantenibilidad   | Media     | El sistema debe poder ser actualizado fácilmente por equipos técnicos reducidos.                |
+| Usabilidad       | Media     | Usuarios no técnicos requieren una interfaz clara y sencilla para reservar.                    |
+
+---
+
+### 5.5 Escenarios de Calidad (Formato ATAM)
+
+#### Escenario 1: Rendimiento
+
+> **Cuando** un cliente accede al sistema para consultar disponibilidad de salas e instrumentos,  
+> **el sistema debe** mostrar los resultados en menos de 2 segundos,  
+> **bajo** una carga de hasta 30 usuarios concurrentes y con 10.000 registros en la base de datos.
+
+**Justificación**: Mejora la tasa de reservas exitosas y evita que los clientes recurran a canales manuales como WhatsApp.
+
+---
+
+#### Escenario 2: Disponibilidad
+
+> **Cuando** se produce una falla parcial del sistema (como la caída de un contenedor),  
+> **el sistema debe** recuperarse automáticamente en menos de 2 minutos,  
+> **bajo** una arquitectura con monitoreo activo y balanceo de carga, asegurando ≥ 99% de disponibilidad.
+
+**Justificación**: Asegura continuidad durante horarios críticos, evitando pérdida de reservas y frustración de usuarios.
+
+---
+
+
