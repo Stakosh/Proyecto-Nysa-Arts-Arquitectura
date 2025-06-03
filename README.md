@@ -356,67 +356,6 @@ Restricciones (As-Is)
 ## 7 Análisis de Brechas
 
 
-## 3. Análisis de Brechas
-
-| Brecha detectada       | Impacto                                                             | Sugerencia de mejora                                   |
-|------------------------|----------------------------------------------------------------------|--------------------------------------------------------|
-| **Falta de automatización** (excel manual)  
-| Manual (Excel)         | - Retrasos de 12–24 h en confirmación de reservas  
-- Errores frecuentes por duplicación de filas  
-- Baja satisfacción del cliente y riesgo de sobreventa           | Desarrollar una web app con base de datos relacional que:  
-1. Permita a usuarios ver disponibilidad en tiempo real.  
-2. Automatice el proceso de reserva y envío de notificaciones.  
-3. Elimine la edición directa en Excel.               |
-| **Falta de viabilidad en tiempo real**  
-| Ninguna en tiempo real | - No hay visibilidad instantánea del estado de salas.  
-- Se toman decisiones con información desfasada.                      | Implementar Dashboard en React que muestre:  
-1. Estado actual de todas las salas.  
-2. Gráficos de ocupación en tiempo real.                         |
-| **Escalabilidad limitada**  
-| Limitada a Excel     | - No se puede atender más de “X” reservas simultáneas.  
-- Un solo archivo se vuelve cuellos de botella (bloqueos de edición).          | Migrar a microservicios contenedorizados (Docker) para:  
-1. Separar módulos (reservas, usuarios, notificaciones).  
-2. Permitir despliegues horizontales (más instancias).                 |
-| **Falta de predicción de demanda**  
-| No existe            | - Imposible anticipar picos de uso; riesgo de sobreventa.  
-- Planificación reactiva en lugar de proactiva.                        | Integrar un módulo SARIMA que:  
-1. Analice datos históricos de reservas (si se migran a BD).  
-2. Genere pronósticos semanales/mensuales de ocupación.            |
-| **Ausencia de seguridad**  
-| Nula                 | - Datos sensibles en Excel sin control de acceso.  
-- Vulnerabilidad ante modificaciones no autorizadas.                   | Implementar autenticación con JWT y cifrado TLS:  
-1. Registro/autenticación de usuarios.  
-2. Comunicación cifrada cliente–servidor.                          |
-| **Baja disponibilidad**  
-| Archivo local (Excel) | - Si OneDrive falla o no hay Internet, no se gestionan reservas.  
-- Pérdida de ingresos si el sistema queda inaccesible.                    | Desplegar solución en nube con balanceador de carga:  
-1. Garantizar failover de instancias.  
-2. Habilitar réplicas de base de datos y backups automáticos.            |
-| **Usabilidad deficiente**  
-| Interfaz de Excel, poco intuitivo | - Curva de aprendizaje alta para usuarios no técnicos.  
-- Multiplicación de errores al editar manualmente.               | Diseñar una UI responsive y accesible:  
-1. Formularios claros para reserva.  
-2. Navegación sencilla desde móviles y escritorios.                |
-| **Sin monitoreo ni logging**  
-| No existe            | - Imposible detectar fallos en cascada.  
-- Sin alertas tempranas ante errores críticos de sincronización.         | Implementar ELK Stack (Elasticsearch + Logstash + Kibana) con alertas:  
-1. Guardar logs centralizados de actividades.  
-2. Enviar notificaciones automáticas (email/Slack) ante errores.       |
-| **Respaldo y recuperación manual**  
-| Copias manuales de Excel | - Riesgo de pérdida de datos si el usuario no respalda a tiempo.  
-- Imposible recuperarse rápido ante corrupción de archivo.              | Configurar backups automáticos y recuperación programada:  
-1. Generar snapshots diarios de la base de datos.  
-2. Probar procesos de restore periódicamente.                      |
-| **Mantenibilidad baja**  
-| Código y lógica en Excel | - Difícil de versionar, probar y extender.  
-- Dependencia absoluta de conocimientos de fórmulas Excel.               | Refactorizar a código modular en Node.js/React con tests:  
-1. Separar capas (backend, frontend, base de datos).  
-2. Crear suite de pruebas unitarias e integrales.                   |
-| **Cumplimiento normativo ausente**  
-| No existe            | - Riesgo legal por manejo inadecuado de datos personales.  
-- Imposible auditar trazabilidad de quién accede a qué dato.              | Adoptar políticas GDPR/Privacy Shield:  
-1. Implementar gestión de consentimientos.  
-2. Registrar logs de acceso y modificaciones de datos.           |
 
 
 | Aspecto               | As-Is                                 | To-Be                                           | Brecha |
