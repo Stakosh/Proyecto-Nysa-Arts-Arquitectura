@@ -31,14 +31,30 @@
 
 # Descripción del proyecto y contexto
 
-En un mercado musical cada vez más competitivo y con demanda variable, **Nysa Arts** busca modernizar su sistema de gestión de reservas. Actualmente los músicos y productores solicitan salas de ensayo y producción mediante WhatsApp, Instagram o llamadas telefónicas, y los administradores registran las solicitudes en una planilla de Excel en OneDrive, lo cual genera:
+Nombre del sistema: NysaArtsBook
 
-- Demoras en la respuesta.  
-- Errores manuales.  
-- Falta de visibilidad en tiempo real de la ocupación de espacios.  
+Cliente / Organización: Nysa Arts, empresa dedicada al arriendo de salas de ensayo y producción musical en Santiago de Chile.
 
-**Ubicación**: Santiago de Chile  
-**Clientes principales**: Músicos independientes, bandas emergentes, productoras y educadores musicales.
+Propósito: El propósito de NysaArtsBook es ofrecer una plataforma web que automatice por completo el proceso de reserva de salas, minimice los errores de registro y proporcione visibilidad en tiempo real sobre la ocupación de espacios, de modo que tanto los músicos como el equipo administrativo cuenten con información precisa y rápida para tomar decisiones.
+
+Contexto de uso (narrativo):
+En un mercado musical cada vez más competitivo y con demanda variable, Nysa Arts gestiona actualmente las solicitudes de reserva a través de canales informales como WhatsApp, Instagram o llamadas telefónicas. Cuando un músico o productor solicita una sala, el personal administrativo revisa manualmente un archivo de Excel alojado en OneDrive para verificar disponibilidad, anotar la nueva reserva y luego confirma al cliente por el mismo canal de mensajería. Este flujo genera demoras en la atención (que en promedio pueden llegar a 12–24 horas), errores manuales al duplicar o sobreescribir información y una completa falta de visibilidad instantánea de cuántas salas están realmente ocupadas.
+
+La ausencia de un sistema integrado provoca que los músicos independientes, bandas emergentes, productoras y educadores musicales no tengan certidumbre inmediata sobre la disponibilidad, lo que se traduce en cancelaciones de último minuto y pérdida de oportunidades de negocio para Nysa Arts. Además, el equipo de administración carece de datos históricos estructurados para analizar tendencias de uso y planificar de forma proactiva.
+
+Por tanto, NysaArtsBook se concibe como la solución que centraliza todas las peticiones en un único entorno web: los usuarios podrán visualizar en tiempo real las franjas disponibles, completar el formulario de reserva en línea y recibir una confirmación automática. Al mismo tiempo, el personal administrativo dispondrá de un panel de control que incorpora la base de datos centralizada, reportes de uso y alertas automáticas ante posibles colisiones de reservas. Con ello, se espera reducir drásticamente las demoras, eliminar los errores de registro y dotar a Nysa Arts de datos confiables para optimizar la operación y la toma de decisiones.
+
+Ubicación de operación: Santiago de Chile (oficinas de Nysa Arts y salas de ensayo distribuidas en la ciudad).
+
+Clientes principales:
+
+    Músicos independientes que buscan espacios para ensayar.
+
+    Bandas emergentes que requieren salas equipadas para pruebas de sonido.
+
+    Productoras que necesitan espacios para grabaciones puntuales.
+
+    Educadores musicales que reservan aulas para clases grupales.
 
 # Arquitectura As-Is
 
