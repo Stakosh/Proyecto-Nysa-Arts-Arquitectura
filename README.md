@@ -58,6 +58,38 @@ Clientes principales:
 
 # Arquitectura As-Is
 
+1. Diagrama de Contexto (C4 – Nivel 1)
+![Diagrama de Contexto)](docs/diagrama-de-contexto.png){#fig:diagrama-contexto}
+
+El Diagrama de Contexto muestra el sistema tal como existe hoy (“As-Is”) y sus relaciones con los actores externos. En este caso, el sistema As-Is es el conjunto formado por la planilla de Excel en OneDrive más los canales de mensajería y llamadas que utilizan los clientes y administradores.
+
+    Figura 1.1. Diagrama de Contexto As-Is.
+
+        Sistema As-Is (caja central): Conformado por los “Canales de Mensajería y Llamadas” (WhatsApp, Instagram y Llamadas) y la “Planilla Excel (OneDrive)”.
+
+        Actores externos:
+
+            Cliente: Músico, banda o productor que solicita la reserva.
+
+            Administrador: Personal de Nysa Arts que revisa la planilla y confirma o rechaza la reserva.
+
+Explicación:
+
+    El Cliente envía la petición de reserva mediante WhatsApp/Instagram o por llamada.
+
+    Dicha petición llega al administrador (que trabaja sobre la planilla Excel en OneDrive).
+
+    El administrador valida disponibilidad en la “Planilla Excel” y, según el resultado,
+
+        Si hay cupo, anota la reserva en la planilla y confirma al cliente por el mismo canal.
+
+        Si no hay cupo, notifica al cliente el rechazo.
+
+    No existe ningún otro sistema intermedio: todo se hace de forma manual entre el administrador y la planilla Excel.
+
+2. Diagrama de Componentes (C4 – Nivel 2 / Contenedores)
+   En este diagrama se identifican los distintos “contenedores” que componen el sistema As-Is, señalando cómo se conectan entre sí.
+
 ## Componentes principales
 
 - **Clientes**: Usuarios que contactan a través de WhatsApp o Instagram.  
@@ -65,27 +97,80 @@ Clientes principales:
 - **Base de datos**: Hoja de cálculo en Excel.  
 - **Comunicación**: WhatsApp, Instagram y llamadas telefónicas.  
 
-![Diagrama de Componentes As-Is](docs/figura_1.png){#fig:componentes}
+![Diagrama de Contenedores As-Is](docs/Diagrama-de-Contenedores-As-Is.png){#fig:diagrama-contenedores}
 
 *Figura 1. Diagrama de Componentes As-Is*
 
-## Flujo de datos
+    Figura 1.2. Diagrama de Contenedores As-Is.
 
-1. El cliente se contacta por WhatsApp, Instagram o llamada.  
-2. El administrador revisa manualmente la planilla de Excel.  
-3. Si hay disponibilidad, registra la reserva en la planilla.  
-4. Confirma la reserva al cliente por el mismo canal.
+        ClienteDevice: Dispositivo del cliente (smartphone o PC).
 
-![Diagrama de Actividad As-Is](docs/figura_2.png){#fig:flujo}
+            Componente “WhatsApp / Instagram (Canales de Mensajería)”.
 
-*Figura 2. Diagrama de Actividad (flujo de datos)*
+        AdminDevice: Dispositivo del administrador (PC o laptop).
 
-## Restricciones principales
+            Componente “Navegador Web (accede a OneDrive → Excel)”.
 
-- **Sin transacciones atómicas**: Riesgo de sobrescritura al editar simultáneamente.  
-- **No hay histórico estructurado**: Dificultad para análisis de tendencias.  
-- **Latencia**: Demoras de minutos u horas en reflejar cambios.  
-- **Sin monitoreo o control de concurrencia**: No hay bloqueo ni alertas automáticas.
+            Componente “Planilla Excel (Reservas)”.
+
+        OneDrive: Servicio de almacenamiento en la nube donde reside la planilla Excel.
+
+Explicación:
+
+    El Cliente usa su dispositivo para enviar la petición a través de WhatsApp / Instagram.
+
+    El administrador, desde su PC/laptop, abre el Navegador Web y accede a OneDrive para editar la Planilla Excel.
+
+    Cada vez que el administrador guarda la planilla, OneDrive sincroniza el archivo automáticamente.
+
+    No existe una base de datos relacional ni un backend; todo el procesamiento es manual sobre la hoja de cálculo.
+
+
+
+3. Diagrama de Capas de la Arquitectura Empresarial (As-Is)
+
+Este diagrama muestra cómo, en el esquema actual, las responsabilidades están organizadas por capas, aunque todas ellas dependen, en última instancia, de la planilla Excel y de la comunicación manual.
+
+![Diagrama de Capas de la Arquitectura Empresarial (As-Is)](docs/Diagrama-de-Capas-As-Is.png){#diagrama-capas}
+    Figura 1.3. Diagrama de Capas de la Arquitectura Empresarial As-Is.
+
+        Capa de Presentación
+
+            Cliente (UI): WhatsApp, Instagram o llamada telefónica.
+
+            Administrador (UI): Navegador Web que abre OneDrive → Excel.
+
+        Capa de Aplicación / Proceso
+
+            Proceso Manual de Gestión de Reservas: Lógica totalmente manual donde el administrador revisa disponibilidad, ingresa la nueva reserva y notifica al cliente.
+
+        Capa de Datos
+
+            Planilla Excel (Reservas): Archivo compartido que funciona como “base de datos” improvisada.
+
+        Capa de Infraestructura
+
+            OneDrive: Almacenamiento en la nube para la planilla.
+
+            Conexión a Internet: Toda la operación depende de tener conectividad para abrir/sincronizar la hoja.
+
+Explicación:
+
+    En la Capa de Presentación, tanto el cliente como el administrador interactúan con el sistema:
+
+        El cliente usa WhatsApp/Instagram o una llamada para solicitar la reserva.
+
+        El administrador usa el navegador web para acceder a OneDrive y editar la planilla.
+
+    En la Capa de Aplicación / Proceso, no existe un servicio automatizado:
+
+        El “Proceso Manual de Gestión de Reservas” es la “lógica” real, pero se ejecuta de forma humana, no en un servidor o backend.
+
+    En la Capa de Datos, la única fuente de verdad es la “Planilla Excel” que se comporta como base de datos.
+
+    En la Capa de Infraestructura, OneDrive y la conexión a Internet son imprescindibles para que cualquier cambio en la hoja se comparta entre usuarios.
+
+
 
 ## 3. Análisis de Arquitectura Empresarial
 
