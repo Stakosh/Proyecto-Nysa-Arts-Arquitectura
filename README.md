@@ -29,7 +29,7 @@
 
 ---
 
-# Descripción del proyecto y contexto
+## 1. Descripción del proyecto y contexto
 
 Nombre del sistema: NysaArtsBook
 
@@ -56,121 +56,112 @@ Clientes principales:
 
     Educadores musicales que reservan aulas para clases grupales.
 
-# Arquitectura As-Is
+## 2. Arquitectura As-Is
 
-1. Diagrama de Contexto (C4 – Nivel 1)
-![Diagrama de Contexto)](docs/diagrama-de-contexto.png){#fig:diagrama-contexto}
+2.1 Diagrama de Contexto (C4 – Nivel 1)
+![Diagrama de Contexto)](docs/diagrama-de-contexto.png)
+**Figura 2.1. Diagrama de Contexto As-Is.**
+
 
 El Diagrama de Contexto muestra el sistema tal como existe hoy (“As-Is”) y sus relaciones con los actores externos. En este caso, el sistema As-Is es el conjunto formado por la planilla de Excel en OneDrive más los canales de mensajería y llamadas que utilizan los clientes y administradores.
 
-    Figura 1.1. Diagrama de Contexto As-Is.
 
-        Sistema As-Is (caja central): Conformado por los “Canales de Mensajería y Llamadas” (WhatsApp, Instagram y Llamadas) y la “Planilla Excel (OneDrive)”.
 
-        Actores externos:
+- **Sistema As-Is (caja central):** Conformado por los “Canales de Mensajería y Llamadas” (WhatsApp, Instagram y Llamadas) y la “Planilla Excel (OneDrive)”.
+- **Actores externos:**
+  - **Cliente:** Músico, banda o productor que solicita la reserva.
+  - **Administrador:** Personal de Nysa Arts que revisa la planilla y confirma o rechaza la reserva.
 
-            Cliente: Músico, banda o productor que solicita la reserva.
+**Explicación:**
+1. El Cliente envía la petición de reserva mediante WhatsApp/Instagram o por llamada.
+2. Dicha petición llega al Administrador (que trabaja sobre la planilla Excel en OneDrive).
+3. El Administrador valida disponibilidad en la “Planilla Excel” y, según el resultado:
+   - Si hay cupo, anota la reserva en la planilla y confirma al Cliente por el mismo canal.
+   - Si no hay cupo, notifica al Cliente el rechazo.
+4. No existe ningún otro sistema intermedio: todo se hace de forma manual entre el Administrador y la planilla Excel.
 
-            Administrador: Personal de Nysa Arts que revisa la planilla y confirma o rechaza la reserva.
+---
 
-Explicación:
-
-    El Cliente envía la petición de reserva mediante WhatsApp/Instagram o por llamada.
-
-    Dicha petición llega al administrador (que trabaja sobre la planilla Excel en OneDrive).
-
-    El administrador valida disponibilidad en la “Planilla Excel” y, según el resultado,
-
-        Si hay cupo, anota la reserva en la planilla y confirma al cliente por el mismo canal.
-
-        Si no hay cupo, notifica al cliente el rechazo.
-
-    No existe ningún otro sistema intermedio: todo se hace de forma manual entre el administrador y la planilla Excel.
-
-2. Diagrama de Componentes (C4 – Nivel 2 / Contenedores)
+2.2 Diagrama de Componentes (C4 – Nivel 2 / Contenedores)
    En este diagrama se identifican los distintos “contenedores” que componen el sistema As-Is, señalando cómo se conectan entre sí.
 
-## Componentes principales
 
-- **Clientes**: Usuarios que contactan a través de WhatsApp o Instagram.  
-- **Administración**: Personal de Nysa Arts que actualiza la planilla Excel.  
-- **Base de datos**: Hoja de cálculo en Excel.  
-- **Comunicación**: WhatsApp, Instagram y llamadas telefónicas.  
+![Diagrama de Contenedores As-Is](docs/Diagrama-de-Contenedores-As-Is.png)
+**Figura 2.2. Diagrama de Contenedores As-Is.**
 
-![Diagrama de Contenedores As-Is](docs/Diagrama-de-Contenedores-As-Is.png){#fig:diagrama-contenedores}
-
-*Figura 1. Diagrama de Componentes As-Is*
-
-    Figura 1.2. Diagrama de Contenedores As-Is.
-
-        ClienteDevice: Dispositivo del cliente (smartphone o PC).
-
-            Componente “WhatsApp / Instagram (Canales de Mensajería)”.
-
-        AdminDevice: Dispositivo del administrador (PC o laptop).
-
-            Componente “Navegador Web (accede a OneDrive → Excel)”.
-
-            Componente “Planilla Excel (Reservas)”.
-
-        OneDrive: Servicio de almacenamiento en la nube donde reside la planilla Excel.
-
-Explicación:
-
-    El Cliente usa su dispositivo para enviar la petición a través de WhatsApp / Instagram.
-
-    El administrador, desde su PC/laptop, abre el Navegador Web y accede a OneDrive para editar la Planilla Excel.
-
-    Cada vez que el administrador guarda la planilla, OneDrive sincroniza el archivo automáticamente.
-
-    No existe una base de datos relacional ni un backend; todo el procesamiento es manual sobre la hoja de cálculo.
+En este diagrama se identifican los distintos “contenedores” que componen el sistema As-Is, señalando cómo se conectan entre sí.
 
 
+- **ClienteDevice:** Dispositivo del Cliente (smartphone o PC).  
+  - Componente “WhatsApp / Instagram (Canales de Mensajería)”.  
+- **AdminDevice:** Dispositivo del Administrador (PC o laptop).  
+  - Componente “Navegador Web (accede a OneDrive → Excel)”.  
+  - Componente “Planilla Excel (Reservas)”.  
+- **OneDrive:** Servicio de almacenamiento en la nube donde reside la planilla Excel.
 
-3. Diagrama de Capas de la Arquitectura Empresarial (As-Is)
+**Explicación:**
+1. El Cliente usa su dispositivo para enviar la petición a través de WhatsApp / Instagram.
+2. El Administrador, desde su PC/laptop, abre el Navegador Web y accede a OneDrive para editar la Planilla Excel.
+3. Cada vez que el Administrador guarda la planilla, OneDrive sincroniza el archivo automáticamente.
+4. No existe una base de datos relacional ni un backend; todo el procesamiento es manual sobre la hoja de cálculo.
+
+---
+
+2.3 Diagrama de Capas de la Arquitectura Empresarial (As-Is)
 
 Este diagrama muestra cómo, en el esquema actual, las responsabilidades están organizadas por capas, aunque todas ellas dependen, en última instancia, de la planilla Excel y de la comunicación manual.
 
-![Diagrama de Capas de la Arquitectura Empresarial (As-Is)](docs/Diagrama-de-Capas-As-Is.png){#diagrama-capas}
-    Figura 1.3. Diagrama de Capas de la Arquitectura Empresarial As-Is.
+![Diagrama de Capas de la Arquitectura Empresarial (As-Is)](docs/Diagrama-de-Capas-As-Is.png)
+    **Figura 2.3. Diagrama de Capas de la Arquitectura Empresarial As-Is.**
 
-        Capa de Presentación
+- **Capa de Presentación**  
+  - **Cliente (UI):** WhatsApp, Instagram o llamada telefónica.  
+  - **Administrador (UI):** Navegador Web que abre OneDrive → Excel.  
 
-            Cliente (UI): WhatsApp, Instagram o llamada telefónica.
+- **Capa de Aplicación / Proceso**  
+  - **Proceso Manual de Gestión de Reservas:** Lógica totalmente manual donde el administrador revisa disponibilidad, ingresa la nueva reserva y notifica al cliente.  
 
-            Administrador (UI): Navegador Web que abre OneDrive → Excel.
+- **Capa de Datos**  
+  - **Planilla Excel (Reservas):** Archivo compartido que funciona como “base de datos” improvisada.  
 
-        Capa de Aplicación / Proceso
+- **Capa de Infraestructura**  
+  - **OneDrive:** Almacenamiento en la nube para la planilla.  
+  - **Conexión a Internet:** Toda la operación depende de tener conectividad para abrir/sincronizar la hoja.  
 
-            Proceso Manual de Gestión de Reservas: Lógica totalmente manual donde el administrador revisa disponibilidad, ingresa la nueva reserva y notifica al cliente.
+**Explicación:**
 
-        Capa de Datos
+1. En la **Capa de Presentación**, tanto el cliente como el administrador interactúan con el sistema:  
+   - El cliente usa WhatsApp/Instagram o una llamada para solicitar la reserva.  
+   - El administrador usa el navegador web para acceder a OneDrive y editar la planilla.  
 
-            Planilla Excel (Reservas): Archivo compartido que funciona como “base de datos” improvisada.
+2. En la **Capa de Aplicación / Proceso**, no existe un servicio automatizado:  
+   - El “Proceso Manual de Gestión de Reservas” es la “lógica” real, pero se ejecuta de forma humana, no en un servidor o backend.  
 
-        Capa de Infraestructura
+3. En la **Capa de Datos**, la única fuente de verdad es la **Planilla Excel**, que se comporta como base de datos.  
 
-            OneDrive: Almacenamiento en la nube para la planilla.
+4. En la **Capa de Infraestructura**, OneDrive y la conexión a Internet son imprescindibles para que cualquier cambio en la hoja se comparta entre usuarios.  
 
-            Conexión a Internet: Toda la operación depende de tener conectividad para abrir/sincronizar la hoja.
+1.4  Servicios utilizados (As-Is)
 
-Explicación:
+- **OneDrive**  
+  Repositorio en la nube donde se aloja la planilla Excel que funciona como base de datos improvisada.  
+- **Canales de mensajería (WhatsApp, Instagram)**  
+  Vía principal para recibir solicitudes de reserva y enviar confirmaciones o rechazos al cliente.  
+- **Llamadas telefónicas**  
+  Canal alternativo de comunicación entre cliente y administración cuando no se utiliza mensajería digital.  
 
-    En la Capa de Presentación, tanto el cliente como el administrador interactúan con el sistema:
+Restricciones (As-Is)
 
-        El cliente usa WhatsApp/Instagram o una llamada para solicitar la reserva.
-
-        El administrador usa el navegador web para acceder a OneDrive y editar la planilla.
-
-    En la Capa de Aplicación / Proceso, no existe un servicio automatizado:
-
-        El “Proceso Manual de Gestión de Reservas” es la “lógica” real, pero se ejecuta de forma humana, no en un servidor o backend.
-
-    En la Capa de Datos, la única fuente de verdad es la “Planilla Excel” que se comporta como base de datos.
-
-    En la Capa de Infraestructura, OneDrive y la conexión a Internet son imprescindibles para que cualquier cambio en la hoja se comparta entre usuarios.
-
-
+1. **Sin transacciones atómicas en la planilla Excel**  
+   - Si dos administradores abren y editan simultáneamente el archivo, pueden sobrescribirse datos sin control de versiones.  
+2. **Falta de histórico estructurado**  
+   - La planilla no guarda un registro completo de cambios; no existe auditoría ni versiones previas de cada reserva.  
+3. **Latencia en la respuesta al cliente**  
+   - El flujo manual (leer mensaje, abrir Excel, editar, notificar) introduce tiempos de espera de 12–24 horas en promedio.  
+4. **Sin monitoreo ni alertas automáticas**  
+   - No hay mecanismos que notifiquen fallos de sincronización en OneDrive ni avisen sobre colisiones de edición en la hoja.  
+5. **Dependencia total de conectividad a Internet y de OneDrive**  
+   - Si falla la conexión a Internet o OneDrive sufre interrupciones, el sistema queda inaccesible y no se pueden gestionar ni consultar reservas.
 
 ## 3. Análisis de Arquitectura Empresarial
 
