@@ -235,7 +235,7 @@ Restricciones (As-Is)
 - **Drivers:** Alta demanda, procesos manuales ineficientes, necesidad de escalabilidad.
 
 
-# Requerimientos del Sistema
+## 4 Requerimientos del Sistema
 
 ## Funcionales
 
@@ -264,37 +264,7 @@ Restricciones (As-Is)
 | Usabilidad      | Interfaz amigable           | Debe contar con una interfaz intuitiva y optimizada para dispositivos móviles. |
 | Mantenibilidad  | Código modular               | El sistema debe estar desarrollado con arquitectura modular y pruebas automatizadas. |
 
-# Aplicación de ATAM (básico)
-
-## Atributos de calidad
-
-1. **Rendimiento**: < 500 ms para 100 usuarios simul.  
-2. **Seguridad**: Protección contra inyección SQL/XSS.  
-3. **Disponibilidad**: Recuperación tras fallo de contenedor.  
-4. **Escalabilidad**: Provisionar nuevas réplicas en < 2 min.  
-5. **Mantenibilidad**: MTTC < 1 hora para parches críticos.
-
-## Escenarios de calidad
-
-- 100 usuarios realizan consultas simultáneas.  
-- Intento de inyección SQL bloqueado por WAF.  
-- Falla de un contenedor y recuperación automática.
-
-# Análisis de Brechas
-
-| Aspecto         | As-Is                      | To-Be                                      | Brecha  |
-|-----------------|----------------------------|--------------------------------------------|--------:|
-| Automatización  | Manual (Excel)            | Web app con base de datos relacional       | Alta    |
-| Escalabilidad   | Limitada a Excel          | Microservicios en Docker                  | Media   |
-| Predicción      | No existe                 | Módulo SARIMA                              | Alta    |
-| Seguridad       | Nula                       | JWT + TLS                                  | Alta    |
-| Disponibilidad  | Local (archivo)          | Alta disponibilidad con load balancer     | Alta    |
-
-# Bibliografía
-
-- Informe de Avance Capstone (Grupo 6), Capstone Project, Nysa Arts, 2024.  
-- Nevile8. (s.f.). *final*. GitHub. Recuperado el 5 de junio de 2025, de https://github.com/Nevile8/final  
-- Nysa Arts. (s.f.). *Nysa Arts Demo*. Recuperado el 5 de junio de 2025, de https://nyssaa.netlify.app/
+---
 
 ## 5. Perfil Operacional
 
@@ -354,6 +324,25 @@ Restricciones (As-Is)
 
 ---
 
+## 6 Aplicación de ATAM (básico)
+
+## Atributos de calidad
+
+1. **Rendimiento**: < 500 ms para 100 usuarios simul.  
+2. **Seguridad**: Protección contra inyección SQL/XSS.  
+3. **Disponibilidad**: Recuperación tras fallo de contenedor.  
+4. **Escalabilidad**: Provisionar nuevas réplicas en < 2 min.  
+5. **Mantenibilidad**: MTTC < 1 hora para parches críticos.
+
+## Escenarios de calidad
+
+- 100 usuarios realizan consultas simultáneas.  
+- Intento de inyección SQL bloqueado por WAF.  
+- Falla de un contenedor y recuperación automática.
+
+
+
+
 #### Escenario 2: Disponibilidad
 
 > **Cuando** se produce una falla parcial del sistema (como la caída de un contenedor),  
@@ -364,4 +353,29 @@ Restricciones (As-Is)
 
 ---
 
+## 7 Análisis de Brechas
+
+
+| Aspecto               | As-Is                                 | To-Be                                           | Brecha |
+|-----------------------|---------------------------------------|-------------------------------------------------|-------:|
+| Automatización        | Manual (Excel)                        | Web app con base de datos relacional            | Alta   |
+| Viabilidad            | Ninguna en tiempo real                | Dashboard en React                              | Alta   |
+| Escalabilidad         | Limitada al Excel                     | Microservicios en Docker                        | Media  |
+| Predicción de demanda | No existe                             | Módulo SARIMA                                   | Alta   |
+| Seguridad             | Nula                                  | JWT + TLS                                       | Alta   |
+| Disponibilidad        | Archivo local, disponibilidad solo local | Alta disponibilidad con balanceador de carga  | Alta   |
+| Usabilidad            | Interfaz de Excel, poco intuitivo     | UI responsive y accesible                       | Media  |
+| Monitoreo y logging   | No existe                             | Logs centralizados y alertas con ELK Stack      | Alta   |
+| Respaldo y recuperación | Copias manuales de Excel             | Backups automáticos y recuperación programada   | Alta   |
+| Mantenibilidad        | Código y lógica en Excel              | Código modular en Node.js/React + tests         | Media  |
+| Cumplimiento normativo| No existe                             | Gestión de datos con GDPR/Privacy Shield         | Media  |
+
+
+---
+
+# Bibliografía
+
+- Informe de Avance Capstone (Grupo 6), Capstone Project, Nysa Arts, 2024.  
+- Nevile8. (s.f.). *final*. GitHub. Recuperado el 5 de junio de 2025, de https://github.com/Nevile8/final  
+- Nysa Arts. (s.f.). *Nysa Arts Demo*. Recuperado el 5 de junio de 2025, de https://nyssaa.netlify.app/
 
