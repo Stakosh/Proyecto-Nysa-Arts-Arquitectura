@@ -355,22 +355,19 @@ Restricciones (As-Is)
 
 ## 7 Análisis de Brechas
 
-
-
-
-| Aspecto               | As-Is                                 | To-Be                                           | Brecha |
-|-----------------------|---------------------------------------|-------------------------------------------------|-------:|
-| Automatización        | Manual (Excel)                        | Web app con base de datos relacional            | Alta   |
-| Viabilidad            | Ninguna en tiempo real                | Dashboard en React                              | Alta   |
-| Escalabilidad         | Limitada al Excel                     | Microservicios en Docker                        | Media  |
-| Predicción de demanda | No existe                             | Módulo SARIMA                                   | Alta   |
-| Seguridad             | Nula                                  | JWT + TLS                                       | Alta   |
-| Disponibilidad        | Archivo local, disponibilidad solo local | Alta disponibilidad con balanceador de carga  | Alta   |
-| Usabilidad            | Interfaz de Excel, poco intuitivo     | UI responsive y accesible                       | Media  |
-| Monitoreo y logging   | No existe                             | Logs centralizados y alertas con ELK Stack      | Alta   |
-| Respaldo y recuperación | Copias manuales de Excel             | Backups automáticos y recuperación programada   | Alta   |
-| Mantenibilidad        | Código y lógica en Excel              | Código modular en Node.js/React + tests         | Media  |
-| Cumplimiento normativo| No existe                             | Gestión de datos con GDPR/Privacy Shield         | Media  |
+| Aspecto               | As-Is                                  | To-Be                                            | Brecha | Sugerencia de mejora                                                                                         |
+|-----------------------|----------------------------------------|--------------------------------------------------|-------:|----------------------------------------------------------------------|
+| Automatización        | Manual (Excel)                         | Web app con base de datos relacional             | Alta   | Desarrollar una aplicación web que automatice el flujo de reservas y  |                       |                                        |                                                  |        | notifique a los usuarios en tiempo real 
+| Viabilidad            | Ninguna en tiempo real                 | Dashboard en React                               | Alta   | Implementar un dashboard en React que muestre el estado de las salas y métricas clave en tiempo real         |
+| Escalabilidad         | Limitada al Excel                      | Microservicios en Docker                         | Media  | Migrar a una arquitectura de microservicios contenedorizados para permitir escalado horizontal               |
+| Predicción de demanda | No existe                              | Módulo SARIMA                                    | Alta   | Integrar un modelo SARIMA que analice datos históricos y genere pronósticos automáticos de ocupación         |
+| Seguridad             | Nula                                   | JWT + TLS                                        | Alta   | Implementar autenticación basada en JWT y cifrado TLS para proteger las comunicaciones y los datos            |
+| Disponibilidad        | Archivo local, disponibilidad solo local | Alta disponibilidad con balanceador de carga    | Alta   | Desplegar la solución en la nube con balanceador de carga y réplicas de base de datos                        |
+| Usabilidad            | Interfaz de Excel, poco intuitivo      | UI responsive y accesible                        | Media  | Diseñar una interfaz web responsiva y accesible que simplifique la experiencia de reserva                     |
+| Monitoreo y logging   | No existe                              | Logs centralizados y alertas con ELK Stack       | Alta   | Configurar ELK Stack (Elasticsearch, Logstash, Kibana) para centralizar logs y emitir alertas automáticas    |
+| Respaldo y recuperación | Copias manuales de Excel              | Backups automáticos y recuperación programada    | Alta   | Establecer un sistema de backups automáticos y realizar pruebas periódicas de restauración                    |
+| Mantenibilidad        | Código y lógica en Excel               | Código modular en Node.js/React + tests          | Media  | Refactorizar la lógica a un código modular en Node.js/React, acompañado de pruebas unitarias e integrales    |
+| Cumplimiento normativo| No existe                              | Gestión de datos con GDPR/Privacy Shield         | Media  | Implementar políticas de privacidad, gestión de consentimientos y registros de auditoría para cumplimiento GDPR |
 
 
 ---
