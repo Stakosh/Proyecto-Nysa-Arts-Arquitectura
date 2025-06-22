@@ -29,139 +29,53 @@
 
 ---
 
-## 1. Descripción del proyecto y contexto
+## 1. Evaluación inicial: pruebas de estrés del sistema actual (As-Is)
 
-Nombre del sistema: NysaArtsBook
+Primero realizamos una evaluación del sistema actual utilizado por Nysa Arts para gestionar sus reservas, el cual está compuesto por una planilla de Excel alojada en OneDrive y la comunicación informal mediante canales como WhatsApp, Instagram y llamadas telefónicas. Esta arquitectura As-Is, al ser completamente manual, nos llevó a simular un escenario de estrés para observar cómo responde ante una demanda elevada.
 
-Cliente / Organización: Nysa Arts, empresa dedicada al arriendo de salas de ensayo y producción musical en Santiago de Chile.
+En particular, modelamos un caso en que se reciben simultáneamente 20 solicitudes de reserva durante un horario de alta demanda (por ejemplo, viernes entre 18:00 y 20:00 horas). Durante esta prueba, identificamos varios problemas críticos:
 
-Propósito: El propósito de NysaArtsBook es ofrecer una plataforma web que automatice por completo el proceso de reserva de salas, minimice los errores de registro y proporcione visibilidad en tiempo real sobre la ocupación de espacios, de modo que tanto los músicos como el equipo administrativo cuenten con información precisa y rápida para tomar decisiones.
+Colisiones al momento de escribir en la planilla, cuando dos administradores intentan editar al mismo tiempo.
 
-Contexto de uso (narrativo):
-En un mercado musical cada vez más competitivo y con demanda variable, Nysa Arts gestiona actualmente las solicitudes de reserva a través de canales informales como WhatsApp, Instagram o llamadas telefónicas. Cuando un músico o productor solicita una sala, el personal administrativo revisa manualmente un archivo de Excel alojado en OneDrive para verificar disponibilidad, anotar la nueva reserva y luego confirma al cliente por el mismo canal de mensajería. Este flujo genera demoras en la atención (que en promedio pueden llegar a 12–24 horas), errores manuales al duplicar o sobreescribir información y una completa falta de visibilidad instantánea de cuántas salas están realmente ocupadas.
+Riesgo de sobrescritura de datos y pérdida de reservas ya ingresadas.
 
-La ausencia de un sistema integrado provoca que los músicos independientes, bandas emergentes, productoras y educadores musicales no tengan certidumbre inmediata sobre la disponibilidad, lo que se traduce en cancelaciones de último minuto y pérdida de oportunidades de negocio para Nysa Arts. Además, el equipo de administración carece de datos históricos estructurados para analizar tendencias de uso y planificar de forma proactiva.
+Tiempos de respuesta prolongados hacia el cliente (entre 12 y 24 horas en promedio).
 
-Por tanto, NysaArtsBook se concibe como la solución que centraliza todas las peticiones en un único entorno web: los usuarios podrán visualizar en tiempo real las franjas disponibles, completar el formulario de reserva en línea y recibir una confirmación automática. Al mismo tiempo, el personal administrativo dispondrá de un panel de control que incorpora la base de datos centralizada, reportes de uso y alertas automáticas ante posibles colisiones de reservas. Con ello, se espera reducir drásticamente las demoras, eliminar los errores de registro y dotar a Nysa Arts de datos confiables para optimizar la operación y la toma de decisiones.
+Ausencia total de alertas automáticas o registro de auditoría.
 
-Ubicación de operación: Santiago de Chile (oficinas de Nysa Arts y salas de ensayo distribuidas en la ciudad).
+A partir de estos resultados, concluimos que el sistema actual no está preparado para soportar múltiples usuarios concurrentes ni para garantizar una operación confiable durante momentos clave. La dependencia del trabajo manual genera cuellos de botella, errores y una experiencia deficiente tanto para el cliente como para el equipo administrativo.
 
-Clientes principales:
+## 2. Propuesta de arquitectura To-Be: diseño de la nueva solución
 
-    Músicos independientes que buscan espacios para ensayar.
+Frente a estas limitaciones, proponemos una arquitectura moderna, automatizada y escalable que permita a Nysa Arts operar de forma más eficiente y entregar una mejor experiencia tanto a clientes como al equipo administrativo.
 
-    Bandas emergentes que requieren salas equipadas para pruebas de sonido.
+Frontend (Capa de Presentación)
+Desarrollaremos una aplicación web responsiva en React, que los usuarios podrán usar desde cualquier dispositivo (móvil o escritorio). Esta interfaz permitirá visualizar en tiempo real la disponibilidad de salas, completar reservas, editarlas o cancelarlas, y recibir confirmaciones automáticas. Será intuitiva y accesible, pensada para usuarios no técnicos.
 
-    Productoras que necesitan espacios para grabaciones puntuales.
+Backend (Lógica de Aplicación)
+La lógica de negocio estará implementada en Node.js, donde se procesarán las solicitudes, se validará la disponibilidad y se enviarán notificaciones automáticas. Este backend actuará como intermediario entre el frontend, la base de datos y otros servicios, asegurando consistencia en las operaciones y mayor velocidad de respuesta.
 
-    Educadores musicales que reservan aulas para clases grupales.
+Servicios (API RESTful)
+Toda la comunicación entre el frontend, el backend y la base de datos se realizará a través de una API REST, lo que permite mantener una arquitectura desacoplada, más fácil de mantener y escalar. Esto también permitirá integrar futuros servicios como pasarelas de pago, Google Calendar o redes sociales.
 
-## 2. Arquitectura As-Is
+Base de Datos (Capa de Datos)
+Utilizaremos una base de datos PostgreSQL, donde se almacenará toda la información estructurada de usuarios, salas, horarios, reservas e inventario de equipos. Esta base permitirá hacer consultas rápidas, generar reportes históricos y alimentar futuros módulos de análisis predictivo.
 
-2.1 Diagrama de Contexto (C4 – Nivel 1)
-![Diagrama de Contexto)](docs/diagrama-de-contexto.png)
-**Figura 2.1. Diagrama de Contexto As-Is.**
+Infraestructura en la nube
+La solución será desplegada en servicios en la nube como Heroku o Firebase, lo que garantiza alta disponibilidad, escalabilidad automática, respaldo continuo y facilidad de mantenimiento. Además, incorporaremos un balanceador de carga que distribuirá el tráfico entre múltiples instancias del backend, mejorando la estabilidad en horarios de alta demanda.
 
+Seguridad
+La seguridad será un pilar clave. Usaremos autenticación basada en JWT (JSON Web Tokens), cifrado con HTTPS/TLS 1.2 o superior, control de roles y validaciones en cada punto crítico del sistema. Esto nos permitirá proteger tanto la información de los usuarios como las operaciones realizadas.
 
-El Diagrama de Contexto muestra el sistema tal como existe hoy (“As-Is”) y sus relaciones con los actores externos. En este caso, el sistema As-Is es el conjunto formado por la planilla de Excel en OneDrive más los canales de mensajería y llamadas que utilizan los clientes y administradores.
+Monitoreo y Logs
+Integraremos un sistema de monitoreo y visualización de logs basado en ELK Stack (Elasticsearch, Logstash y Kibana), que permitirá hacer seguimiento en tiempo real del funcionamiento del sistema, detectar errores y emitir alertas automáticas ante fallas o comportamientos anómalos.
 
+Respaldo y recuperación ante fallos
+Se implementarán backups automáticos y un sistema de recuperación rápida en caso de fallos. Por ejemplo, ante la caída de un contenedor, la plataforma podrá restablecer el servicio en menos de 2 minutos, lo que asegura una disponibilidad ≥ 99%, incluso en escenarios críticos.
 
+Módulo predictivo (futuro)
+En una siguiente etapa, consideramos integrar un módulo de análisis predictivo basado en modelos como SARIMA, que nos permitirá anticipar la ocupación de las salas y mejorar la planificación operativa y comercial.
 
-- **Sistema As-Is (caja central):** Conformado por los “Canales de Mensajería y Llamadas” (WhatsApp, Instagram y Llamadas) y la “Planilla Excel (OneDrive)”.
-- **Actores externos:**
-  - **Cliente:** Músico, banda o productor que solicita la reserva.
-  - **Administrador:** Personal de Nysa Arts que revisa la planilla y confirma o rechaza la reserva.
-
-**Explicación:**
-1. El Cliente envía la petición de reserva mediante WhatsApp/Instagram o por llamada.
-2. Dicha petición llega al Administrador (que trabaja sobre la planilla Excel en OneDrive).
-3. El Administrador valida disponibilidad en la “Planilla Excel” y, según el resultado:
-   - Si hay cupo, anota la reserva en la planilla y confirma al Cliente por el mismo canal.
-   - Si no hay cupo, notifica al Cliente el rechazo.
-4. No existe ningún otro sistema intermedio: todo se hace de forma manual entre el Administrador y la planilla Excel.
-
----
-
-2.2 Diagrama de Componentes (C4 – Nivel 2 / Contenedores)
-   En este diagrama se identifican los distintos “contenedores” que componen el sistema As-Is, señalando cómo se conectan entre sí.
-
-
-![Diagrama de Contenedores As-Is](docs/Diagrama-de-Contenedores-As-Is.png)
-**Figura 2.2. Diagrama de Contenedores As-Is.**
-
-En este diagrama se identifican los distintos “contenedores” que componen el sistema As-Is, señalando cómo se conectan entre sí.
-
-
-- **ClienteDevice:** Dispositivo del Cliente (smartphone o PC).  
-  - Componente “WhatsApp / Instagram (Canales de Mensajería)”.  
-- **AdminDevice:** Dispositivo del Administrador (PC o laptop).  
-  - Componente “Navegador Web (accede a OneDrive → Excel)”.  
-  - Componente “Planilla Excel (Reservas)”.  
-- **OneDrive:** Servicio de almacenamiento en la nube donde reside la planilla Excel.
-
-**Explicación:**
-1. El Cliente usa su dispositivo para enviar la petición a través de WhatsApp / Instagram.
-2. El Administrador, desde su PC/laptop, abre el Navegador Web y accede a OneDrive para editar la Planilla Excel.
-3. Cada vez que el Administrador guarda la planilla, OneDrive sincroniza el archivo automáticamente.
-4. No existe una base de datos relacional ni un backend; todo el procesamiento es manual sobre la hoja de cálculo.
-
----
-
-2.3 Diagrama de Capas de la Arquitectura Empresarial (As-Is)
-
-Este diagrama muestra cómo, en el esquema actual, las responsabilidades están organizadas por capas, aunque todas ellas dependen, en última instancia, de la planilla Excel y de la comunicación manual.
-
-![Diagrama de Capas de la Arquitectura Empresarial (As-Is)](docs/Diagrama-de-Capas-As-Is.png)
-    **Figura 2.3. Diagrama de Capas de la Arquitectura Empresarial As-Is.**
-
-- **Capa de Presentación**  
-  - **Cliente (UI):** WhatsApp, Instagram o llamada telefónica.  
-  - **Administrador (UI):** Navegador Web que abre OneDrive → Excel.  
-
-- **Capa de Aplicación / Proceso**  
-  - **Proceso Manual de Gestión de Reservas:** Lógica totalmente manual donde el administrador revisa disponibilidad, ingresa la nueva reserva y notifica al cliente.  
-
-- **Capa de Datos**  
-  - **Planilla Excel (Reservas):** Archivo compartido que funciona como “base de datos” improvisada.  
-
-- **Capa de Infraestructura**  
-  - **OneDrive:** Almacenamiento en la nube para la planilla.  
-  - **Conexión a Internet:** Toda la operación depende de tener conectividad para abrir/sincronizar la hoja.  
-
-**Explicación:**
-
-1. En la **Capa de Presentación**, tanto el cliente como el administrador interactúan con el sistema:  
-   - El cliente usa WhatsApp/Instagram o una llamada para solicitar la reserva.  
-   - El administrador usa el navegador web para acceder a OneDrive y editar la planilla.  
-
-2. En la **Capa de Aplicación / Proceso**, no existe un servicio automatizado:  
-   - El “Proceso Manual de Gestión de Reservas” es la “lógica” real, pero se ejecuta de forma humana, no en un servidor o backend.  
-
-3. En la **Capa de Datos**, la única fuente de verdad es la **Planilla Excel**, que se comporta como base de datos.  
-
-4. En la **Capa de Infraestructura**, OneDrive y la conexión a Internet son imprescindibles para que cualquier cambio en la hoja se comparta entre usuarios.  
-
-1.4  Servicios utilizados (As-Is)
-
-- **OneDrive**  
-  Repositorio en la nube donde se aloja la planilla Excel que funciona como base de datos improvisada.  
-- **Canales de mensajería (WhatsApp, Instagram)**  
-  Vía principal para recibir solicitudes de reserva y enviar confirmaciones o rechazos al cliente.  
-- **Llamadas telefónicas**  
-  Canal alternativo de comunicación entre cliente y administración cuando no se utiliza mensajería digital.  
-
-Restricciones (As-Is)
-
-1. **Sin transacciones atómicas en la planilla Excel**  
-   - Si dos administradores abren y editan simultáneamente el archivo, pueden sobrescribirse datos sin control de versiones.  
-2. **Falta de histórico estructurado**  
-   - La planilla no guarda un registro completo de cambios; no existe auditoría ni versiones previas de cada reserva.  
-3. **Latencia en la respuesta al cliente**  
-   - El flujo manual (leer mensaje, abrir Excel, editar, notificar) introduce tiempos de espera de 12–24 horas en promedio.  
-4. **Sin monitoreo ni alertas automáticas**  
-   - No hay mecanismos que notifiquen fallos de sincronización en OneDrive ni avisen sobre colisiones de edición en la hoja.  
-5. **Dependencia total de conectividad a Internet y de OneDrive**  
-   - Si falla la conexión a Internet o OneDrive sufre interrupciones, el sistema queda inaccesible y no se pueden gestionar ni consultar reservas.
 
 ## 3. Análisis de Arquitectura Empresarial
 
