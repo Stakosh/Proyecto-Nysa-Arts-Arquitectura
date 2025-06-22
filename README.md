@@ -270,6 +270,9 @@ Propuesta e implementación de al menos un patrón de arquitectura y una mejora 
 
 Por lo tanto se hace la propuesta de una arquitectura basada en microservicios, para una migración gradual del sistema as-is y añadir de forma modular las mejoras a las brechas detectadas, se propone utilizar el siguiente repertorio como base de expansión futura.
 
+##  Estructura del Repositorio
+
+```bash
 nysa-arts/
 ├── README.md
 ├── .gitignore
@@ -277,29 +280,29 @@ nysa-arts/
 ├── docker-compose.yml
 ├── docker-compose.prod.yml
 
-├── docs/                          # Toda documentación (API, arquitectura, Postman)
+├── docs/
 │   ├── apis/
 │   ├── architecture/
 │   └── postman/
 
-├── config/                        # Configuración común e infraestructura
+├── config/
 │   ├── nginx/
 │   ├── scripts/
-│   └── db-migrations/            # Migraciones SQL centralizadas
+│   └── db-migrations/
 
-├── deployment/                   # Infraestructura como código
+├── deployment/
 │   ├── k8s/
 │   ├── helm/
 │   ├── terraform/
 │   └── ansible/
 
-├── shared/                       # Código compartido entre servicios
+├── shared/
 │   ├── database/
 │   ├── events/
 │   ├── utils/
 │   └── types/
 
-├── services/                     # Microservicios backend agrupados
+├── services/
 │   ├── usuarios/
 │   ├── salas/
 │   ├── reservas/
@@ -307,7 +310,7 @@ nysa-arts/
 │   ├── estadisticas/
 │   └── notificaciones/
 
-├── frontend/                     # Frontend React unificado
+├── frontend/
 │   ├── public/
 │   ├── src/
 │   │   ├── components/
