@@ -23,7 +23,7 @@
 
 ---
 
-**Fecha de entrega:** Jueves 5 de junio de 2025  
+**Fecha de entrega:** Jueves 24 de junio de 2025  
 
 <!-- ============================================= -->
 
