@@ -102,12 +102,59 @@ En una siguiente etapa, consideramos integrar un módulo de análisis predictivo
 
 
 ## 2. Propuesta de arquitectura to-be  
-   - Arquitectura de Procesos  
-   - Arquitectura de Aplicaciones y Datos  
-   - Arquitectura de Infraestructura  
+
+   - Arquitectura de Procesos
+     
+   - Arquitectura de Aplicaciones y Datos
+     
+   - Arquitectura de Infraestructura
+     
 ## 3. Justificación de decisiones arquitectónicas  
+
+### a. Automatización del proceso de reservas
+
+- **Brecha:** Proceso manual, errores frecuentes, duplicidad de datos  
+- **Solución:** Web App + API RESTful  
+- **Mejora:** Autonomía, disponibilidad 24/7, menos errores humanos
+
+### b. Consistencia y control de datos
+
+- **Brecha:** Datos no estructurados, sin auditoría  
+- **Solución:** PostgreSQL + módulo de auditoría  
+- **Mejora:** Informes confiables, trazabilidad
+
+### c. Seguridad y control de acceso
+
+- **Brecha:** Sin autenticación  
+- **Solución:** JWT + HTTPS  
+- **Mejora:** Confidencialidad y control de acceso por roles
+
+### d. Escalabilidad y mantenimiento
+
+- **Brecha:** Sistema monolítico, difícil de escalar  
+- **Solución:** Microservicios en Docker  
+- **Mejora:** Escalabilidad horizontal y modularidad
+
+### e. Gestión y monitoreo
+
+- **Brecha:** Sin logs ni monitoreo  
+- **Solución:** ELK Stack  
+- **Mejora:** Observabilidad y respuesta ante fallas
+
+### f. Resiliencia y continuidad operativa
+
+- **Brecha:** Sin respaldos ni recuperación  
+- **Solución:** Backups automáticos en AWS  
+- **Mejora:** Tolerancia a fallos y continuidad del servicio
+
+---
+
 ## 4. Mejoras a nivel de código y patrones  
+
 ## 5. Discusión y conclusiones  
+
 ## 6. Bibliografía  
+
 ## 7. Anexos
+
 
