@@ -320,7 +320,7 @@ nysa-arts/
 │   │   ├── styles/
 │   │   └── assets/
 │   └── Dockerfile
-
+```
 
 ## 5. Discusión y conclusiones  
 
