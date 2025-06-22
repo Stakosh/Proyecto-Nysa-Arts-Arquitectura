@@ -266,6 +266,51 @@ Se asegura la resiliencia del sistema y la continuidad del servicio incluso fren
 ---
 
 ## 4. Mejoras a nivel de código y patrones  
+Propuesta e implementación de al menos un patrón de arquitectura y una mejora de código relevante, documentando el impacto de cada cambio.
+
+Por lo tanto se hace la propuesta de una arquitectura basada en microservicios, para una migración gradual del sistema as-is y añadir de forma modular las mejoras a las brechas detectadas, se propone utilizar el siguiente repertorio como base de expansión futura.
+
+nysa-arts/
+├── README.md
+├── .gitignore
+├── .env.example
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── docs/                          # Toda documentación (API, arquitectura, Postman)
+│   ├── apis/
+│   ├── architecture/
+│   └── postman/
+├── config/                        # Configuración común e infraestructura
+│   ├── nginx/
+│   ├── scripts/
+│   └── db-migrations/            # Migraciones SQL centralizadas
+├── deployment/                   # Infraestructura como código
+│   ├── k8s/
+│   ├── helm/
+│   ├── terraform/
+│   └── ansible/
+├── shared/                       # Código compartido entre servicios
+│   ├── database/
+│   ├── events/
+│   ├── utils/
+│   └── types/
+├── services/                     # Microservicios backend agrupados
+│   ├── usuarios/
+│   ├── salas/
+│   ├── reservas/
+│   ├── auditoría/
+│   ├── estadísticas/
+│   └── notificaciones/
+├── frontend/                     # Frontend React unificado
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── store/
+│   │   ├── styles/
+│   │   └── assets/
+│   └── Dockerfile
 
 ## 5. Discusión y conclusiones  
 
