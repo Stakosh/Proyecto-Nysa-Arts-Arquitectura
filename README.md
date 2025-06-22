@@ -29,6 +29,21 @@
 
 ---
 
+## Índice
+
+1. Evaluación inicial (PoC)  
+2. Propuesta de arquitectura to-be  
+   - Arquitectura de Procesos  
+   - Arquitectura de Aplicaciones y Datos  
+   - Arquitectura de Infraestructura  
+3. Justificación de decisiones arquitectónicas  
+4. Mejoras a nivel de código y patrones  
+5. Discusión y conclusiones  
+6. Bibliografía  
+7. Anexos
+
+---
+
 ## 1. Evaluación inicial: pruebas de estrés del sistema actual (As-Is)
 
 Primero realizamos una evaluación del sistema actual utilizado por Nysa Arts para gestionar sus reservas, el cual está compuesto por una planilla de Excel alojada en OneDrive y la comunicación informal mediante canales como WhatsApp, Instagram y llamadas telefónicas. Esta arquitectura As-Is, al ser completamente manual, nos llevó a simular un escenario de estrés para observar cómo responde ante una demanda elevada.
