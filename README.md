@@ -206,7 +206,6 @@ Se asegura la resiliencia del sistema y la continuidad del servicio incluso fren
 ## 6. Bibliografía
 
 - Informe de Avance Capstone (Grupo 6), Capstone Project, Nysa Arts, 2024.  
-- Nevile8. (s.f.). final. GitHub. [https://github.com/Nevile8/final](https://github.com/Nevile8/final)  
 - Nysa Arts Demo. [https://nyssaa.netlify.app/](https://nyssaa.netlify.app/)
 
 ---
