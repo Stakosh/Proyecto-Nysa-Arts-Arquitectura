@@ -45,7 +45,7 @@ Ausencia total de alertas automáticas o registro de auditoría.
 
 A partir de estos resultados, concluimos que el sistema actual no está preparado para soportar múltiples usuarios concurrentes ni para garantizar una operación confiable durante momentos clave. La dependencia del trabajo manual genera cuellos de botella, errores y una experiencia deficiente tanto para el cliente como para el equipo administrativo.
 
-## 2. Propuesta de arquitectura To-Be: diseño de la nueva solución
+## 1.2. Propuesta de arquitectura To-Be: diseño de la nueva solución
 
 Frente a estas limitaciones, proponemos una arquitectura moderna, automatizada y escalable que permita a Nysa Arts operar de forma más eficiente y entregar una mejor experiencia tanto a clientes como al equipo administrativo.
 
