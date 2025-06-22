@@ -49,33 +49,41 @@ A partir de estos resultados, concluimos que el sistema actual no está preparad
 
 Frente a estas limitaciones, proponemos una arquitectura moderna, automatizada y escalable que permita a Nysa Arts operar de forma más eficiente y entregar una mejor experiencia tanto a clientes como al equipo administrativo.
 
-Frontend (Capa de Presentación)
-Desarrollaremos una aplicación web responsiva en React, que los usuarios podrán usar desde cualquier dispositivo (móvil o escritorio). Esta interfaz permitirá visualizar en tiempo real la disponibilidad de salas, completar reservas, editarlas o cancelarlas, y recibir confirmaciones automáticas. Será intuitiva y accesible, pensada para usuarios no técnicos.
+### Frontend (Capa de Presentación)
 
-Backend (Lógica de Aplicación)
-La lógica de negocio estará implementada en Node.js, donde se procesarán las solicitudes, se validará la disponibilidad y se enviarán notificaciones automáticas. Este backend actuará como intermediario entre el frontend, la base de datos y otros servicios, asegurando consistencia en las operaciones y mayor velocidad de respuesta.
+Desarrollaremos una aplicación web responsiva en **React**, que los usuarios podrán usar desde cualquier dispositivo (móvil o escritorio). Esta interfaz permitirá visualizar en tiempo real la disponibilidad de salas, completar reservas, editarlas o cancelarlas, y recibir confirmaciones automáticas. Será intuitiva y accesible, pensada para usuarios no técnicos.
 
-Servicios (API RESTful)
-Toda la comunicación entre el frontend, el backend y la base de datos se realizará a través de una API REST, lo que permite mantener una arquitectura desacoplada, más fácil de mantener y escalar. Esto también permitirá integrar futuros servicios como pasarelas de pago, Google Calendar o redes sociales.
+### Backend (Lógica de Aplicación)
 
-Base de Datos (Capa de Datos)
-Utilizaremos una base de datos PostgreSQL, donde se almacenará toda la información estructurada de usuarios, salas, horarios, reservas e inventario de equipos. Esta base permitirá hacer consultas rápidas, generar reportes históricos y alimentar futuros módulos de análisis predictivo.
+La lógica de negocio estará implementada en **Node.js**, donde se procesarán las solicitudes, se validará la disponibilidad y se enviarán notificaciones automáticas. Este backend actuará como intermediario entre el frontend, la base de datos y otros servicios, asegurando consistencia en las operaciones y mayor velocidad de respuesta.
 
-Infraestructura en la nube
-La solución será desplegada en servicios en la nube como Heroku o Firebase, lo que garantiza alta disponibilidad, escalabilidad automática, respaldo continuo y facilidad de mantenimiento. Además, incorporaremos un balanceador de carga que distribuirá el tráfico entre múltiples instancias del backend, mejorando la estabilidad en horarios de alta demanda.
+### Servicios (API RESTful)
 
-Seguridad
-La seguridad será un pilar clave. Usaremos autenticación basada en JWT (JSON Web Tokens), cifrado con HTTPS/TLS 1.2 o superior, control de roles y validaciones en cada punto crítico del sistema. Esto nos permitirá proteger tanto la información de los usuarios como las operaciones realizadas.
+Toda la comunicación entre el frontend, el backend y la base de datos se realizará a través de una **API REST**, lo que permite mantener una arquitectura desacoplada, más fácil de mantener y escalar. Esto también permitirá integrar futuros servicios como pasarelas de pago, Google Calendar o redes sociales.
 
-Monitoreo y Logs
-Integraremos un sistema de monitoreo y visualización de logs basado en ELK Stack (Elasticsearch, Logstash y Kibana), que permitirá hacer seguimiento en tiempo real del funcionamiento del sistema, detectar errores y emitir alertas automáticas ante fallas o comportamientos anómalos.
+### Base de Datos (Capa de Datos)
 
-Respaldo y recuperación ante fallos
-Se implementarán backups automáticos y un sistema de recuperación rápida en caso de fallos. Por ejemplo, ante la caída de un contenedor, la plataforma podrá restablecer el servicio en menos de 2 minutos, lo que asegura una disponibilidad ≥ 99%, incluso en escenarios críticos.
+Utilizaremos una base de datos **PostgreSQL**, donde se almacenará toda la información estructurada de usuarios, salas, horarios, reservas e inventario de equipos. Esta base permitirá hacer consultas rápidas, generar reportes históricos y alimentar futuros módulos de análisis predictivo.
 
-Módulo predictivo (futuro)
-En una siguiente etapa, consideramos integrar un módulo de análisis predictivo basado en modelos como SARIMA, que nos permitirá anticipar la ocupación de las salas y mejorar la planificación operativa y comercial.
+### Infraestructura en la nube
 
+La solución será desplegada en servicios en la nube como **Heroku o Firebase**, lo que garantiza alta disponibilidad, escalabilidad automática, respaldo continuo y facilidad de mantenimiento. Además, incorporaremos un **balanceador de carga** que distribuirá el tráfico entre múltiples instancias del backend, mejorando la estabilidad en horarios de alta demanda.
+
+### Seguridad
+
+La seguridad será un pilar clave. Usaremos **autenticación basada en JWT (JSON Web Tokens)**, cifrado con **HTTPS/TLS 1.2 o superior**, control de roles y validaciones en cada punto crítico del sistema. Esto nos permitirá proteger tanto la información de los usuarios como las operaciones realizadas.
+
+### Monitoreo y Logs
+
+Integraremos un sistema de monitoreo y visualización de logs basado en **ELK Stack** (Elasticsearch, Logstash y Kibana), que permitirá hacer seguimiento en tiempo real del funcionamiento del sistema, detectar errores y emitir alertas automáticas ante fallas o comportamientos anómalos.
+
+### Respaldo y recuperación ante fallos
+
+Se implementarán **backups automáticos** y un sistema de recuperación rápida en caso de fallos. Por ejemplo, ante la caída de un contenedor, la plataforma podrá restablecer el servicio en menos de 2 minutos, lo que asegura una disponibilidad ≥ 99%, incluso en escenarios críticos.
+
+### Módulo predictivo (futuro)
+
+En una siguiente etapa, consideramos integrar un módulo de análisis predictivo basado en modelos como **SARIMA**, que nos permitirá anticipar la ocupación de las salas y mejorar la planificación operativa y comercial.
 
 ## 3. Análisis de Arquitectura Empresarial
 
