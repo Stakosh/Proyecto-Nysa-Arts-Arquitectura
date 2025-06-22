@@ -276,31 +276,37 @@ nysa-arts/
 ├── .env.example
 ├── docker-compose.yml
 ├── docker-compose.prod.yml
+
 ├── docs/                          # Toda documentación (API, arquitectura, Postman)
 │   ├── apis/
 │   ├── architecture/
 │   └── postman/
+
 ├── config/                        # Configuración común e infraestructura
 │   ├── nginx/
 │   ├── scripts/
 │   └── db-migrations/            # Migraciones SQL centralizadas
+
 ├── deployment/                   # Infraestructura como código
 │   ├── k8s/
 │   ├── helm/
 │   ├── terraform/
 │   └── ansible/
+
 ├── shared/                       # Código compartido entre servicios
 │   ├── database/
 │   ├── events/
 │   ├── utils/
 │   └── types/
+
 ├── services/                     # Microservicios backend agrupados
 │   ├── usuarios/
 │   ├── salas/
 │   ├── reservas/
-│   ├── auditoría/
-│   ├── estadísticas/
+│   ├── auditoria/
+│   ├── estadisticas/
 │   └── notificaciones/
+
 ├── frontend/                     # Frontend React unificado
 │   ├── public/
 │   ├── src/
@@ -311,6 +317,7 @@ nysa-arts/
 │   │   ├── styles/
 │   │   └── assets/
 │   └── Dockerfile
+
 
 ## 5. Discusión y conclusiones  
 
