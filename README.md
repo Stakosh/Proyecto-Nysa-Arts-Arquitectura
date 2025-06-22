@@ -109,43 +109,88 @@ En una siguiente etapa, consideramos integrar un módulo de análisis predictivo
      
    - Arquitectura de Infraestructura
      
-## 3. Justificación de decisiones arquitectónicas  
+## 3. Justificación de decisiones arquitectónicas
 
-### a. Automatización del proceso de reservas
+La propuesta de arquitectura futura para la plataforma de reservas de **Nysa Arts Book** ha sido diseñada para responder directamente a las principales brechas del sistema actual (_as-is_), que dependía de procesos manuales poco eficientes y con escasa capacidad de control.  
+Las decisiones arquitectónicas tomadas se fundamentan en los principios de arquitectura empresarial y están orientadas a mejorar atributos clave de calidad como disponibilidad, trazabilidad, seguridad, escalabilidad, resiliencia y mantenibilidad.
 
-- **Brecha:** Proceso manual, errores frecuentes, duplicidad de datos  
-- **Solución:** Web App + API RESTful  
-- **Mejora:** Autonomía, disponibilidad 24/7, menos errores humanos
+---
 
-### b. Consistencia y control de datos
+## a. Automatización del proceso de reservas
 
-- **Brecha:** Datos no estructurados, sin auditoría  
-- **Solución:** PostgreSQL + módulo de auditoría  
-- **Mejora:** Informes confiables, trazabilidad
+**Brecha detectada:**  
+El proceso de reserva de salas se gestionaba manualmente mediante mensajes de WhatsApp y hojas de cálculo en Excel. Este enfoque informal generaba errores frecuentes, duplicidad de información, sobrecarga administrativa y tiempos de respuesta lentos para los usuarios.
 
-### c. Seguridad y control de acceso
+**Decisión arquitectónica:**  
+Se implementó una plataforma web con una interfaz amigable y una API RESTful centralizada. Esta API gestiona todas las operaciones relacionadas con reservas, desde la consulta de disponibilidad hasta la confirmación y notificación.
 
-- **Brecha:** Sin autenticación  
-- **Solución:** JWT + HTTPS  
-- **Mejora:** Confidencialidad y control de acceso por roles
+**Mejora:**  
+La automatización elimina tareas repetitivas, reduce errores humanos y mejora la experiencia del usuario al permitir autogestión de reservas en tiempo real, con acceso 24/7 desde cualquier dispositivo con conexión a Internet.
 
-### d. Escalabilidad y mantenimiento
+---
 
-- **Brecha:** Sistema monolítico, difícil de escalar  
-- **Solución:** Microservicios en Docker  
-- **Mejora:** Escalabilidad horizontal y modularidad
+## b. Consistencia y control de datos
 
-### e. Gestión y monitoreo
+**Brecha detectada:**  
+En el sistema anterior, la información de reservas no estaba estructurada ni normalizada, lo que dificultaba la trazabilidad, la generación de reportes y el análisis histórico. Además, no existía registro de modificaciones ni auditoría.
 
-- **Brecha:** Sin logs ni monitoreo  
-- **Solución:** ELK Stack  
-- **Mejora:** Observabilidad y respuesta ante fallas
+**Decisión arquitectónica:**  
+Se definió una base de datos relacional (PostgreSQL) con integridad referencial, relaciones bien definidas y un módulo de auditoría que permite registrar toda acción relevante del usuario en la plataforma.
 
-### f. Resiliencia y continuidad operativa
+**Mejora:**  
+Esto asegura la consistencia de los datos, permite generar informes detallados, detectar errores, auditar comportamientos y fundamentar decisiones estratégicas basadas en evidencia histórica.
 
-- **Brecha:** Sin respaldos ni recuperación  
-- **Solución:** Backups automáticos en AWS  
-- **Mejora:** Tolerancia a fallos y continuidad del servicio
+---
+
+## c. Seguridad y control de acceso
+
+**Brecha detectada:**  
+No existían mecanismos de autenticación, lo que significaba que cualquier persona podía realizar acciones sin verificación de identidad ni protección de la información.
+
+**Decisión arquitectónica:**  
+Se integró un sistema de autenticación mediante JSON Web Tokens (JWT) para identificar a usuarios y asignar roles (usuario, administrador). Además, todo el tráfico se cifra mediante TLS (HTTPS).
+
+**Mejora:**  
+Se garantiza la confidencialidad, integridad y autenticidad de la información intercambiada. Esto permite aplicar restricciones de acceso según perfiles y proteger los datos personales y operacionales frente a terceros no autorizados.
+
+---
+
+## d. Escalabilidad y mantenimiento
+
+**Brecha detectada:**  
+El sistema monolítico y manual era difícil de escalar o mantener. Cualquier cambio requería intervención directa en archivos compartidos o canales de mensajería, generando cuellos de botella y errores.
+
+**Decisión arquitectónica:**  
+Se adoptó una arquitectura de microservicios, separando los componentes de frontend (React), backend (Node.js/Express) y base de datos, todos desplegados en contenedores Docker. Esto facilita la escalabilidad horizontal y la actualización de módulos sin afectar a todo el sistema.
+
+**Mejora:**  
+La modularidad permite desarrollar, probar y escalar componentes de forma independiente, mejorando la mantenibilidad y reduciendo el tiempo de despliegue de nuevas funcionalidades.
+
+---
+
+## e. Gestión y monitoreo
+
+**Brecha detectada:**  
+En el sistema anterior no se registraban métricas, logs ni eventos. Cualquier error o caída pasaba desapercibido hasta que algún usuario lo notificaba.
+
+**Decisión arquitectónica:**  
+Se incorporó un sistema de monitoreo mediante el stack ELK (Elasticsearch, Logstash, Kibana), que recolecta logs, los almacena centralizadamente y permite visualizar el estado del sistema en tiempo real.
+
+**Mejora:**  
+Esta solución proporciona observabilidad, permitiendo diagnosticar problemas, detectar patrones anómalos, y optimizar el rendimiento del sistema de forma proactiva.
+
+---
+
+## f. Resiliencia y continuidad operativa
+
+**Brecha detectada:**  
+No existía ninguna política de respaldos ni mecanismos para recuperar información ante fallas o pérdidas de datos.
+
+**Decisión arquitectónica:**  
+Se habilitó un sistema de backups automáticos diarios de la base de datos, almacenados en un bucket privado en AWS S3. Además, se contempla una política de recuperación ante desastres.
+
+**Mejora:**  
+Se asegura la resiliencia del sistema y la continuidad del servicio incluso frente a caídas críticas, evitando pérdida de datos e interrupciones prolongadas.
 
 ---
 
