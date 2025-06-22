@@ -101,13 +101,84 @@ Se implementarán **backups automáticos** y un sistema de recuperación rápida
 En una siguiente etapa, consideramos integrar un módulo de análisis predictivo basado en modelos como **SARIMA**, que nos permitirá anticipar la ocupación de las salas y mejorar la planificación operativa y comercial.
 
 
-## 2. Propuesta de arquitectura to-be  
+# 📚 Propuesta de Arquitectura To-Be para Nysa Arts Book
 
-   - Arquitectura de Procesos
-     
-   - Arquitectura de Aplicaciones y Datos
-     
-   - Arquitectura de Infraestructura
+Este documento presenta la propuesta de arquitectura **To-Be** para modernizar el sistema de reservas de salas en Nysa Arts Book, incluyendo automatización, escalabilidad y seguridad mediante el uso de tecnologías modernas.
+
+---
+
+## 2.1 🧭 Arquitectura de Procesos (To-Be)
+
+🎯 **Objetivo:** Automatizar el proceso de reserva de salas mediante una plataforma web accesible desde cualquier dispositivo.
+
+### 📌 Diagrama de Procesos
+
+![Arquitectura de Procesos](docs/pros.jpg)
+
+### 📝 Explicación
+
+- El usuario accede a la plataforma desde cualquier navegador.
+- La Web App se comunica con una **API RESTful** que gestiona las reservas.
+- Las peticiones van a una **base de datos relacional** que valida disponibilidad y almacena la información.
+- Se generan **notificaciones automáticas** para usuario y administrador.
+- El administrador visualiza el calendario, acepta/rechaza reservas y puede generar reportes.
+
+---
+
+## 2.2 🧱 Arquitectura de Aplicaciones y Datos
+
+### 📦 Diagrama de Aplicaciones
+
+![Diagrama de Aplicaciones](docs/app.jpeg)
+
+### 🗃️ Diagrama de Datos
+
+![Diagrama de Datos](img/dat.png)
+
+#### Tablas principales:
+
+- `Usuarios (id, nombre, email, rol, hash_password)`
+- `Reservas (id, sala, fecha, hora_inicio, hora_fin, usuario_id, estado)`
+- `Salas (id, nombre, capacidad, disponibilidad)`
+- `Auditoría (id, accion, usuario_id, timestamp, descripcion)`
+
+### 📝 Explicación
+
+- El **frontend en React** consume la API para enviar y recibir datos.
+- El backend en **Node.js** gestiona la lógica de negocio, validaciones y seguridad.
+- Se utiliza **PostgreSQL** para almacenar los datos con integridad referencial.
+- Se incluye un **módulo de estadísticas** para reportes de uso del sistema.
+
+---
+
+## 2.3 🖥️ Arquitectura de Infraestructura
+
+### 🛰️ Diagrama de Infraestructura
+
+![Diagrama de Infraestructura](docs/inf.jpeg)
+
+### 📝 Explicación
+
+- Toda la aplicación está **containerizada con Docker**.
+- **Nginx** funciona como balanceador de carga y proxy inverso.
+- Se implementan **microservicios separados** para frontend, backend y base de datos.
+- **Backups automáticos** se almacenan en la nube (ej. AWS S3).
+- Se centralizan logs y monitoreo con **ELK Stack** (Elasticsearch, Logstash, Kibana).
+
+---
+
+## 🔁 Comparación As-Is vs. To-Be
+
+| Elemento               | As-Is                        | To-Be                                         |
+|------------------------|------------------------------|-----------------------------------------------|
+| Proceso de Reserva     | Manual por WhatsApp/Excel    | Web App con disponibilidad en tiempo real     |
+| Sincronización         | Propensa a errores            | API centralizada y consistente                |
+| Historial              | No disponible                 | Auditoría digital completa                    |
+| Seguridad              | Nula                          | JWT + TLS                                     |
+| Disponibilidad         | Limitada a horario humano     | Acceso 24/7                                   |
+
+---
+
      
 ## 3. Justificación de decisiones arquitectónicas
 
