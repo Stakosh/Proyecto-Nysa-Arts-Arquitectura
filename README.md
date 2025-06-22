@@ -101,7 +101,7 @@ Se implementarán **backups automáticos** y un sistema de recuperación rápida
 En una siguiente etapa, consideramos integrar un módulo de análisis predictivo basado en modelos como **SARIMA**, que nos permitirá anticipar la ocupación de las salas y mejorar la planificación operativa y comercial.
 
 
-# 📚 Propuesta de Arquitectura To-Be para Nysa Arts Book
+# 2 Propuesta de Arquitectura To-Be para Nysa Arts Book
 
 Este documento presenta la propuesta de arquitectura **To-Be** para modernizar el sistema de reservas de salas en Nysa Arts Book, incluyendo automatización, escalabilidad y seguridad mediante el uso de tecnologías modernas.
 
@@ -109,13 +109,13 @@ Este documento presenta la propuesta de arquitectura **To-Be** para modernizar e
 
 ## 2.1 🧭 Arquitectura de Procesos (To-Be)
 
-🎯 **Objetivo:** Automatizar el proceso de reserva de salas mediante una plataforma web accesible desde cualquier dispositivo.
+ **Objetivo:** Automatizar el proceso de reserva de salas mediante una plataforma web accesible desde cualquier dispositivo.
 
 ### 📌 Diagrama de Procesos
 
 ![Arquitectura de Procesos](docs/pros.jpg)
 
-### 📝 Explicación
+### Explicación
 
 - El usuario accede a la plataforma desde cualquier navegador.
 - La Web App se comunica con una **API RESTful** que gestiona las reservas.
@@ -125,15 +125,15 @@ Este documento presenta la propuesta de arquitectura **To-Be** para modernizar e
 
 ---
 
-## 2.2 🧱 Arquitectura de Aplicaciones y Datos
+## 2.2  Arquitectura de Aplicaciones y Datos
 
-### 📦 Diagrama de Aplicaciones
+###  Diagrama de Aplicaciones
 
-![Diagrama de Aplicaciones](docs/app.jpeg)
+![Diagrama de Aplicaciones](docs/app.jpg)
 
 ### 🗃️ Diagrama de Datos
 
-![Diagrama de Datos](img/dat.png)
+![Diagrama de Datos](docs/dat.png)
 
 #### Tablas principales:
 
@@ -155,7 +155,7 @@ Este documento presenta la propuesta de arquitectura **To-Be** para modernizar e
 
 ### 🛰️ Diagrama de Infraestructura
 
-![Diagrama de Infraestructura](docs/inf.jpeg)
+![Diagrama de Infraestructura](docs/inf.jpg)
 
 ### 📝 Explicación
 
