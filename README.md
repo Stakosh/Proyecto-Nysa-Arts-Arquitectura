@@ -58,7 +58,7 @@ Tiempos de respuesta prolongados hacia el cliente (entre 12 y 24 horas en promed
 
 Ausencia total de alertas automáticas o registro de auditoría.
 
-A partir de estos resultados, concluimos que el sistema actual no está preparado para soportar múltiples usuarios concurrentes ni para garantizar una operación confiable durante momentos clave. La dependencia del trabajo manual genera cuellos de botella, errores y una experiencia deficiente tanto para el cliente como para el equipo administrativo.
+A partir de estos resultados, concluimos que el sistema actual no está preparado para soportar múltiples usuarios en línea ni para garantizar una operación confiable y aún más en momentos de mayor estrés del sistema. La dependencia del trabajo manual genera cuellos de botella, errores y una experiencia deficiente tanto para el cliente como para el equipo administrativo. Habría problemas si queremos que el sistema sea escalable y que responda de la misma forma si se expandiera ya sea vertical u horizontalmente
 
 
 
