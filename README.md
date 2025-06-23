@@ -268,6 +268,7 @@ Se asegura la resiliencia del sistema y la continuidad del servicio incluso fren
 ## 4. Mejoras a nivel de código y patrones  
 Propuesta e implementación de al menos un patrón de arquitectura y una mejora de código relevante, documentando el impacto de cada cambio.
 
+##a.Patron de arquitectura
 Por lo tanto se hace la propuesta de una arquitectura basada en microservicios, para una migración gradual del sistema as-is y añadir de forma modular las mejoras a las brechas detectadas, se propone utilizar el siguiente repertorio como base de expansión futura.
 
 ##  Estructura del Repositorio
@@ -320,6 +321,62 @@ nysa-arts/
 │   │   ├── styles/
 │   │   └── assets/
 │   └── Dockerfile
+```
+##b.Mejora de codigo
+b.Mejora de código
+Se propone una mejora de código al nivel de automatización del proceso de reservas, implementación de sistema de notificaciones automáticas.
+
+```bash
+// services/notificaciones/src/NotificationService.js
+class NotificationService {
+  constructor() {
+    this.strategies = {
+      EMAIL: new EmailStrategy(),
+      SMS: new SMSStrategy(),
+      PUSH: new PushStrategy(),
+      SISTEMA: new SistemaStrategy()
+    };
+  }
+
+  async enviar(notificacion) {
+    const strategy = this.strategies[notificacion.tipo];
+    if (!strategy) {
+      throw new Error(`Tipo de notificación no soportado: ${notificacion.tipo}`);
+    }
+
+    // Procesamiento asíncrono con cola de trabajos
+    await this.encolarNotificacion(notificacion);
+    
+    return strategy.enviar(notificacion);
+  }
+
+  async procesarNotificacionesAutomaticas() {
+    // Verificar reservas próximas (24h antes)
+    const reservasProximas = await this.obtenerReservasProximas();
+    
+    for (const reserva of reservasProximas) {
+      await this.enviar({
+        tipo: 'EMAIL',
+        destinatario: reserva.Usuario.email,
+        template: 'RECORDATORIO_RESERVA',
+        datos: {
+          nombreUsuario: reserva.Usuario.nombre,
+          nombreSala: reserva.Sala.nombre,
+          fecha: reserva.fechaInicio,
+          horasRestantes: this.calcularHorasRestantes(reserva.fechaInicio)
+        }
+      });
+    }
+
+    // Verificar reservas vencidas sin uso
+    const reservasVencidas = await this.obtenerReservasVencidas();
+    
+    for (const reserva of reservasVencidas) {
+      await this.marcarComoNoUsada(reserva);
+      await this.liberarSalaAutomaticamente(reserva);
+    }
+  }
+}
 ```
 
 ## 5. Discusión y conclusiones  
