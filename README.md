@@ -342,7 +342,13 @@ class NotificationService {
 
 ## 5. Discusión y conclusiones  
 
+La transformación de la arquitectura de Nysa Arts Book desde un sistema manual e informal hacia una plataforma moderna basada en microservicios representa un avance significativo en términos de eficiencia, seguridad y escalabilidad. A través del análisis de brechas y pruebas de estrés, se evidenció que el sistema As-Is no podía sostener una operación confiable en contextos de alta demanda ni garantizar una experiencia satisfactoria para los usuarios.
 
+La propuesta To-Be aborda estas limitaciones mediante la automatización del proceso de reservas, la centralización de datos con una base relacional y la integración de mecanismos robustos de autenticación y auditoría. Además, la incorporación de contenedores Docker, backups en la nube y un sistema de monitoreo con ELK Stack permite alcanzar altos estándares de resiliencia y mantenibilidad.
+
+La adopción de una arquitectura basada en microservicios no solo mejora el rendimiento y la modularidad del sistema, sino que también sienta las bases para una evolución continua. La implementación de patrones de diseño y mejoras en el código, como el sistema de notificaciones automáticas, refuerza aún más la calidad de la solución.
+
+En conclusión, la propuesta presentada no solo resuelve las debilidades del sistema actual, sino que proyecta a Nysa Arts Book hacia un entorno tecnológico robusto, preparado para escalar y responder proactivamente a las necesidades de sus usuarios y del negocio.
 
 
 ---
